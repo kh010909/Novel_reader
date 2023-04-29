@@ -54,13 +54,12 @@ for ($i = 0; $i < 8; $i++) {
     <header>
         <?php include('./core/navbar.php'); ?>
     </header>
-
-    <main class="container-fluid">
+    <main class="container">
         <!-- 塊狀1 全小方格-->
         <div class="row justify-content-md-center d-none d-lg-block margin">
-            <div class="row col-8">
+            <div class="row">
                 <div class="border-bottom" id="block1">
-                    <a class="h1" href="">最新小說</a>
+                    <a class="h1" href="./novel_list.php?list_type=TIME">最新小說</a>
                 </div>
                 <!-- 單排格式 -->
                 <div class="d-flex flex-row">
@@ -72,8 +71,12 @@ for ($i = 0; $i < 8; $i++) {
                                 </a>
                             </div>
                             <div class="py-2 flex-column d-flex">
-                                <p class="p-1"><?= $newest_rows[$i]['nName'] ?></p>
-                                <p class="py-3 px-1"><?= $newest_rows[$i]['author'] ?></p>
+                                <p class="p-1">
+                                    <?= $newest_rows[$i]['nName'] ?>
+                                </p>
+                                <p class="py-3 px-1">
+                                    <?= $newest_rows[$i]['author'] ?>
+                                </p>
                                 <p class="p-1">
                                 </p>
                             </div>
@@ -90,8 +93,12 @@ for ($i = 0; $i < 8; $i++) {
                                 </a>
                             </div>
                             <div class="py-2 flex-column d-flex">
-                                <p class="p-1"><?= $newest_rows[$i]['nName'] ?></p>
-                                <p class="py-3 px-1"><?= $newest_rows[$i]['author'] ?></p>
+                                <p class="p-1">
+                                    <?= $newest_rows[$i]['nName'] ?>
+                                </p>
+                                <p class="py-3 px-1">
+                                    <?= $newest_rows[$i]['author'] ?>
+                                </p>
                                 <p class="p-1">
                                 </p>
                             </div>
@@ -102,9 +109,9 @@ for ($i = 0; $i < 8; $i++) {
         </div>
         <!-- 塊狀2 大方格-->
         <div class="row justify-content-md-center d-none d-lg-block">
-            <div class="col-md-8 row">
+            <div class="row">
                 <div class="border-bottom" id="block2">
-                    <a class="h1" href="">熱門小說</a>
+                    <a class="h1" href="./index.php?list_type=LIKE">熱門小說</a>
                 </div>
                 <!-- 單位格式 (大)-->
                 <?php $i = 0; ?>
@@ -115,8 +122,12 @@ for ($i = 0; $i < 8; $i++) {
                         </a>
                     </div>
                     <div class="py-2 flex-column d-flex ">
-                        <p class="p-1"><?= $popularity_rows[$i]['nName'] ?></p>
-                        <p class="py-3 px-1"><?= $popularity_rows[$i]['author'] ?></p>
+                        <p class="p-1">
+                            <?= $popularity_rows[$i]['nName'] ?>
+                        </p>
+                        <p class="py-3 px-1">
+                            <?= $popularity_rows[$i]['author'] ?>
+                        </p>
                         <p class="p-1">
                         </p>
                     </div>
@@ -133,8 +144,12 @@ for ($i = 0; $i < 8; $i++) {
                                     </a>
                                 </div>
                                 <div class="py-2 flex-column d-flex ">
-                                    <p class="p-1"><?= $popularity_rows[$i]['nName'] ?></p>
-                                    <p class="py-3 px-1"><?= $popularity_rows[$i]['author'] ?></p>
+                                    <p class="p-1">
+                                        <?= $popularity_rows[$i]['nName'] ?>
+                                    </p>
+                                    <p class="py-3 px-1">
+                                        <?= $popularity_rows[$i]['author'] ?>
+                                    </p>
                                     <p class="p-1">
                                     </p>
                                 </div>
@@ -153,8 +168,12 @@ for ($i = 0; $i < 8; $i++) {
                                     </a>
                                 </div>
                                 <div class="py-2 flex-column d-flex ">
-                                    <p class="p-1"><?= $popularity_rows[$i]['nName'] ?></p>
-                                    <p class="py-3 px-1"><?= $popularity_rows[$i]['author'] ?></p>
+                                    <p class="p-1">
+                                        <?= $popularity_rows[$i]['nName'] ?>
+                                    </p>
+                                    <p class="py-3 px-1">
+                                        <?= $popularity_rows[$i]['author'] ?>
+                                    </p>
                                     <p class="p-1">
                                     </p>
                                 </div>

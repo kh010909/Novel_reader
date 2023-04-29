@@ -102,11 +102,7 @@ if (@$_POST["method"] == "login") {
     }
 }
 
-if (isset($_SESSION["last_url"])) {
-    $url = $_SESSION["last_url"];
-} else {
-    $url = "../index.php";
-}
+$url = "../index.php";
 
 if ($return_msg != "") {
     $_SESSION["show_message"] = $return_msg;
