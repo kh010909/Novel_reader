@@ -7,7 +7,7 @@
 function connect($root, $pass)
 {
     try {
-        $conn = new PDO('mysql:host=localhost; dbname=123', $root, $pass);
+        $conn = new PDO('mysql:host=localhost; dbname=novel_reader', $root, $pass);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $conn;
     } catch (Exception $e) {

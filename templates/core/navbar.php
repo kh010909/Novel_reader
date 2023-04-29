@@ -57,7 +57,7 @@ include './profile/profile_form.php';
                 </form>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../static/images/icon/icon.svg" alt="mdo" class="rounded-circle" height="31px" width="31px">
+                        <img src="../static/images/icon/tree_book.png" alt="mdo" class="rounded-circle" height="31px" width="31px">
                     </a>
                     <ul class="dropdown-menu text-small dropdown-menu-end mt-2">
                         <?php if (!isset($_SESSION["user"])) {

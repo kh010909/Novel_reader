@@ -14,7 +14,7 @@
     <title>LanguageForest &raquo;My collection</title>
 
 
-    <link href="../static/images/icon/icon.svg" rel="icon" />
+    <link href="../static/images/icon/tree_book.png" rel="icon" />
     <!-- font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

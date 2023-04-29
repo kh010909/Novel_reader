@@ -2,12 +2,16 @@
 include('../core/config.php');
 session_start();
 if (isset($_GET['nId'])) {
+    $id = $_GET['nId'];
     if (isset($_SESSION["user"])) {
         $user_id = $_SESSION["user"]["uId"];
+        $sql = "SELECT * FROM `bookrecord` WHERE `nId` = $id AND `uId` = $user_id";
+        $record_row = get_row($sql, $recordcount, $sql_link);
+        $_SESSION['record'] = $record_row;
     } else {
         $user_id = 0;
     }
-    $id = $_GET['nId'];
+
     //novel
     $sql = "SELECT * FROM `novel` WHERE `nId` = $id";
     $novel_row = get_row($sql, $novelcount, $sql_link);
@@ -20,14 +24,11 @@ if (isset($_GET['nId'])) {
     $sql = "SELECT `tag` FROM `tag` WHERE `nId` = $id";
     $tag_rows = get_row($sql, $tagcount, $sql_link);
     //record
-    $sql = "SELECT * FROM `bookrecord` WHERE `nId` = $id AND `uId` = $user_id";
-    $record_row = get_row($sql, $recordcount, $sql_link);
     $sql = "SELECT c.*,u.name FROM `comment` AS c NATURAL JOIN `user` AS u WHERE `nId` = $id ORDER BY c.cNumber ";
     $comment_rows = get_row($sql, $commentcount, $sql_link);
     $_SESSION['novel'] = $novel_row;
     $_SESSION['article'] = $article_rows;
     $_SESSION['tag'] = $tag_rows;
-    $_SESSION['record'] = $record_row;
     $_SESSION['comment'] = $comment_rows;
     // $_SESSION['uName'] = '123';
     $_SESSION['commentcount'] = $commentcount;

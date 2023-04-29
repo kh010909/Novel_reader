@@ -17,10 +17,10 @@ $id = $_SESSION['id'];
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 
-    <title>LanguageForest &raquo;<!-- put article name here. --></title>
+    <title>LanguageForest &raquo;<?= $article_row[0]['aName'] ?></title>
 
 
-    <link href="../static/images/icon/icon.svg" rel="icon" />
+    <link href="../static/images/icon/tree_book.png" rel="icon" />
     <!-- font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

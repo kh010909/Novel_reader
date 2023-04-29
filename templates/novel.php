@@ -24,7 +24,7 @@ $id = $novel_row[0]['nId'];
     <title>LanguageForest &raquo; <?= $novel_row[0]['nName'] ?> </title>
 
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="../static/images/icon/icon.svg" rel="icon" />
+    <link href="../static/images/icon/tree_book.png" rel="icon" />
     <!-- font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

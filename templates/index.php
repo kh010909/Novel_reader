@@ -26,7 +26,7 @@ for ($i = 0; $i < 8; $i++) {
     <title>LanguageForest &raquo; Home</title>
 
 
-    <link href="../static/images/icon/icon.svg" rel="icon" />
+    <link href="../static/images/icon/tree_book.png" rel="icon" />
     <!-- font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +54,7 @@ for ($i = 0; $i < 8; $i++) {
     <header>
         <?php include('./core/navbar.php'); ?>
     </header>
+
     <main class="container-fluid">
         <!-- 塊狀1 全小方格-->
         <div class="row justify-content-md-center d-none d-lg-block margin">

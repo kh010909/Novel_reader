@@ -34,11 +34,11 @@
                         <a href="index.php#block1" class="nav-link p-0">Newest</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="index.php#block2" class="nav-link p-0">Recommened</a>
+                        <a href="index.php#block2" class="nav-link p-0">Recommend</a>
                     </li>
-                    <li class="nav-item mb-2">
+                    <!-- <li class="nav-item mb-2">
                         <a href="index.php#block3" class="nav-link p-0">Finished</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
@@ -95,7 +95,7 @@
 
 
             <div class="col-lg-2 offset-2 d-none d-lg-block text-center">
-                <img src="../static/images/icon/icon_white.svg" class="d-block w-100 img-fluid" alt="圖片無法載入">
+                <img src="../static/images/icon/tree_book.png" class="d-block w-100 img-fluid" alt="圖片無法載入">
                 <a class="nav-link" href="index.php">
                     <h2>Language Forest</h2>
                 </a>
