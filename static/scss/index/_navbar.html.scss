@@ -1,0 +1,72 @@
+/* navbar.html */
+nav#index-navbar {
+    // transition: top 0.3s, background-color 0.5s;
+
+    &.nav-bg-black {
+        background-color: black;
+    }
+
+    a.navbar-brand {
+        font-size: 1.5em;
+        font-family: 'Castoro Titling', cursive;
+    }
+
+    a.nav-link {
+        font-size: 1.25em;
+        font-family: 'Castoro Titling', cursive;
+    }
+
+    form {
+        vertical-align: baseline;
+
+        input.form-control {
+            height: 0.8em;
+            color: white;
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid white;
+            box-shadow: none;
+            padding: 0 10px;
+        }
+
+        ::placeholder {
+            color: white;
+        }
+    }
+
+    div.dropdown {
+        a.dropdown-toggle::after {
+            display: none;
+        }
+
+        a.dropdown-item:active {
+            background-color: gray;
+        }
+
+        img {
+            vertical-align: baseline;
+            display: inline;
+        }
+    }
+
+    // // Back to top button from https://www.roboleary.net/frontend/2022/04/27/smart-go-to-top-button-link.html
+    // a.top-link {
+    //     position: fixed;
+    //     right: 15px;
+    //     bottom: 15px;
+
+    //     background-color: white;
+
+    //     border-radius: 50%;
+    //     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    //         0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+
+    //     transition: transform 0.3s ease-in-out;
+    // }
+
+    // a.top-link.button-hidden {
+    //     transform: scale(0);
+    // }
+
+}

@@ -1,0 +1,23 @@
+div#edit-post-form {
+    input#upload-edited-post-picture {
+        opacity: 0;
+    }
+
+    // Upload style refer to https://bootstrapious.com/p/bootstrap-image-upload
+    label#edit-post-upload-label {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+    }
+
+    div.edit-post-image-area {
+        border: 2px dashed gray;
+        padding: 1rem;
+        position: relative;
+
+        img {
+            margin: 0 auto;
+        }
+    }
+}

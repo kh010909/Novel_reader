@@ -1,0 +1,52 @@
+/* topic.html */
+section#profile-topic {
+    height: 100vh;
+
+    img {
+        object-fit: cover;
+    }
+
+    div.img-cover {
+        position: absolute;
+        height: 53.5vh;
+        top: 46.5vh;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: white;
+        opacity: 0.9;
+    }
+
+    figure {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+
+        img {
+            background-color: lightgray;
+            outline: 10px solid lightgray;
+        }
+
+        figcaption {
+            color: gray;
+            font-size: 2em;
+            font-family: "Pacifico", cursive;
+        }
+    }
+
+    div.config-button {
+        padding: 15px;
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        width: 80%;
+
+        p {
+            font-size: 2em;
+        }
+    }
+}

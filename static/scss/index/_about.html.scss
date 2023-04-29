@@ -1,0 +1,31 @@
+/* about.html */
+section#index-about {
+    @media only screen and (max-width: 768px) {
+        div.display-2-col {
+            display: none;
+        }
+    }
+
+    @media only screen and (min-width: 769px) {
+        div.display-1-col {
+            display: none;
+        }
+    }
+
+    h2 {
+        font-family: 'Handlee', cursive;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        font-family: 'Kalam', cursive;
+        border-bottom: 1px solid lightgray;
+        padding: 0.5em 0;
+    }
+
+    p {
+        font-size: 1em;
+        margin: 1em 0;
+        text-align: justify;
+    }
+}

@@ -1,0 +1,50 @@
+/* carousel.html */
+
+section#index-carousel-travel {
+    div.carousel-inner {
+        div.carousel-item {
+            background-color: black;
+            height: 100vh;
+
+            img {
+                object-fit: cover;
+            }
+        }
+    }
+
+    // More about animation https://www.w3schools.com/css/css3_animations.asp
+    div.bounce {
+        -moz-animation: bounce 2s infinite;
+        -webkit-animation: bounce 2s infinite;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+        0% {
+            transform: translateY(0);
+        }
+
+        20% {
+            transform: translateY(5px);
+        }
+
+        40% {
+            transform: translateY(0);
+        }
+    }
+
+
+    h2 {
+        font-size: 1.75em;
+        font-family: 'Handlee', cursive;
+        font-weight: bold;
+        margin: 1em 0
+    }
+
+    p {
+        font-size: 1.25em;
+        font-family: 'Kalam', cursive;
+        margin: 1em 0
+    }
+}

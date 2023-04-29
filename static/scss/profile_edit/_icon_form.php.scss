@@ -1,0 +1,24 @@
+div#icon-form {
+    input#upload-icon {
+        opacity: 0;
+    }
+
+    // Upload style refer to https://bootstrapious.com/p/bootstrap-image-upload
+    label#upload-label {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+    }
+
+    div.image-area {
+        border: 2px dashed gray;
+        padding: 1rem;
+        position: relative;
+
+        img {
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+    }
+}

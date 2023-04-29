@@ -1,0 +1,61 @@
+@import "reset";
+@import "normalize";
+@import "basic";
+@import "croppie";
+@import "googlefont";
+/**********************************
+*
+*          index.php
+*
+**********************************/
+//@import "index/about.html";
+//@import "index/carousel.html";
+@import "index/footer.html";
+@import "index/navbar.html";
+//@import "index/post.php";
+//@import "index/tips.html";
+/**********************************
+*
+*          tips.php
+*
+**********************************/
+//@import "tips/content.html";
+//@import "tips/topic.html";
+/**********************************
+*
+*          post.php
+*
+**********************************/
+// @import "posts/content.html";
+// @import "posts/topic.html";
+// @import "posts/add_post_form.php";
+// @import "posts/edit_post_form.php";
+// @import "posts/add_article_form.php";
+// @import "posts/edit_article_form.php";
+/**********************************
+*
+*          login modal
+*
+**********************************/
+//@import "login/policy.html";
+/**********************************
+*
+*          profile.php
+*
+**********************************/
+@import "profile/content.html";
+@import "profile/topic.html";
+/**********************************
+*
+*          profile_edit.php
+*
+**********************************/
+@import "profile_edit/content.php";
+@import "profile_edit/icon_form.php";
+@import "profile_edit/topic.php";
+/**********************************
+*
+*          search.php
+*
+**********************************/
+@import "search/topic.html";

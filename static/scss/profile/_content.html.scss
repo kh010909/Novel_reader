@@ -1,0 +1,57 @@
+/* content.html */
+section#profile-content {
+    nav#sitcky-posts-nav {
+        top: 0px;
+        padding-top: 12px;
+        transition: 0.3s;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    h3 {
+        font-size: 2em;
+        font-family: 'Handlee', cursive;
+        font-weight: bold;
+        padding: 20px 0px;
+    }
+
+    h5 {
+        font-size: 21px;
+    }
+
+    p {
+        font-size: 1em;
+        padding: 10px;
+        text-align: justify;
+    }
+
+    a {
+        color: black;
+        font-size: 30px;
+        font-family: 'Kalam', cursive;
+
+        &:hover {
+            color: white;
+            background-color: gray;
+        }
+    }
+
+    #my-post {
+        a {
+            color: black;
+            font-size: 30px;
+            font-family: 'Kalam', cursive;
+    
+            &:hover {
+                color: gray;
+                background-color: white;
+            }
+        }
+
+        p {
+            font-size: 1.4rem;
+        }
+    }
+}

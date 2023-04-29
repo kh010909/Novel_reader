@@ -1,0 +1,84 @@
+/* content.html */
+section#posts-content {
+    nav#sitcky-posts-nav {
+        top: 0px;
+        padding-top: 12px;
+        transition: 0.3s;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    h3 {
+        font-size: 2em;
+        font-family: 'Handlee', cursive;
+        font-weight: bold;
+        padding: 20px 0px;
+    }
+
+    h5 {
+        font-size: 21px;
+    }
+
+    p {
+        font-size: 1em;
+        padding: 10px;
+        text-align: justify;
+    }
+
+    a {
+        color: black;
+        font-size: 30px;
+        font-family: 'Kalam', cursive;
+
+        &:hover {
+            color: white;
+            background-color: gray;
+        }
+    }
+    div#author {
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+        p {
+            font-size: 14px;
+            // Limit the length of the display 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-inline-box;
+            -webkit-line-clamp: 3; //limit 3 rows
+            -webkit-box-orient: vertical;
+            
+            padding: 0px;
+            text-align: start;
+        }
+        h5 {
+            color: black;
+            font-size: 30px;
+            font-family: 'Kalam', cursive;
+            //Limit the length of the display
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        i {
+            font-size: 100px;
+        }
+    }
+
+    ul.dropdown-menu {
+        li {
+            input {
+                &:focus-visible {
+                    outline: none !important;
+                }
+
+                &:active {
+                    background-color: gray;
+                }
+            }
+        }
+    }
+}
