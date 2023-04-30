@@ -28,13 +28,13 @@
     <div class="container px-5">
         <div class="row py-5 justify-content-center">
             <div class="col-lg-2 col-sm-3">
-                <h5 class="fst-italic"><a href="index.php">Home</a></h5>
+                <h5 class="fst-italic"><a href="index.php">主頁</a></h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
-                        <a href="index.php#block1" class="nav-link p-0">Newest</a>
+                        <a href="index.php#block1" class="nav-link p-0">最新</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="index.php#block2" class="nav-link p-0">Recommend</a>
+                        <a href="index.php#block2" class="nav-link p-0">推薦</a>
                     </li>
                     <!-- <li class="nav-item mb-2">
                         <a href="index.php#block3" class="nav-link p-0">Finished</a>
@@ -43,33 +43,119 @@
             </div>
 
             <div class="col-lg-4 col-sm-6">
-                <h5 class="fst-italic"><a href="">Genres</a></h5>
+                <h5 class="fst-italic"><a href="">種類</a></h5>
                 <ul>
                     <form class="row" action="post/post_handle.php">
                         <li class="col">
                             <ul class="nav flex-column">
                                 <li class="nav-item mb-1">
-                                    <button name="id" class="nav-link p-0 border-0 bg-transparent text-start" value="action">
-                                        <a>action</a>
-                                    </button>
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=言情" class="nav-link p-0 border-0 bg-transparent text-start" value="言情">
+                                        言情
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=玄幻" class="nav-link p-0 border-0 bg-transparent text-start" value="玄幻">
+                                        玄幻
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=軍事" class="nav-link p-0 border-0 bg-transparent text-start" value="軍事">
+                                        軍事
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=短篇" class="nav-link p-0 border-0 bg-transparent text-start" value="短篇">
+                                        短篇
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=靈異" class="nav-link p-0 border-0 bg-transparent text-start" value="靈異">
+                                        靈異
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=遊戲" class="nav-link p-0 border-0 bg-transparent text-start" value="遊戲">
+                                        遊戲
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=女性向" class="nav-link p-0 border-0 bg-transparent text-start" value="女性向">
+                                        女性向
+                                    </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="col">
                             <ul class="nav flex-column">
                                 <li class="nav-item mb-1">
-                                    <button name="id" class="nav-link p-0 border-0 bg-transparent text-start" value="sci-fi">
-                                        <a>sci-fi</a>
-                                    </button>
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=都市" class="nav-link p-0 border-0 bg-transparent text-start" value="都市">
+                                        都市
+                                    </a>
+                                </li>
+
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=科幻" class="nav-link p-0 border-0 bg-transparent text-start" value="科幻">
+                                        科幻
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=歷史" class="nav-link p-0 border-0 bg-transparent text-start" value="歷史">
+                                        歷史
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=同人" class="nav-link p-0 border-0 bg-transparent text-start" value="歷史">
+                                        同人
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=懸疑" class="nav-link p-0 border-0 bg-transparent text-start" value="懸疑">
+                                        懸疑
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=體育" class="nav-link p-0 border-0 bg-transparent text-start" value="體育">
+                                        體育
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=男性向" class="nav-link p-0 border-0 bg-transparent text-start" value="男性向">
+                                        男性向
+                                    </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="col">
                             <ul class="nav flex-column">
                                 <li class="nav-item mb-1">
-                                    <button name="id" class="nav-link p-0 border-0 bg-transparent text-start" value="sci-fi">
-                                        <a>sci-fi</a>
-                                    </button>
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=仙俠" class="nav-link p-0 border-0 bg-transparent text-start" value="仙俠">
+                                        仙俠
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=武俠" class="nav-link p-0 border-0 bg-transparent text-start" value="武俠">
+                                        武俠
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=勵志" class="nav-link p-0 border-0 bg-transparent text-start" value="勵志">
+                                        勵志
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=經典文學" class="nav-link p-0 border-0 bg-transparent text-start" value="歷史">
+                                        經典文學
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=冒險" class="nav-link p-0 border-0 bg-transparent text-start" value="冒險">
+                                        冒險
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a name="id" href="./novel_list.php?list_type=TAG&list_q=熱血" class="nav-link p-0 border-0 bg-transparent text-start" value="熱血">
+                                        熱血
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -77,21 +163,6 @@
                 </ul>
             </div>
 
-            <!-- <div class="col-lg-2 col-sm-3">
-                <h5 class="fst-italic">Sort By</h5>
-                <ul class="row">
-                    <li class="col">
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2">
-                                <a href="" class="nav-link p-0">newest</a>
-                            </li>
-                            <li class="nav-item mb-2">
-                                <a href="" class="nav-link p-0">Most Popular</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div> -->
 
 
             <div class="col-lg-2 offset-2 d-none d-lg-block text-center">
