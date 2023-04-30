@@ -1,36 +1,28 @@
 <?php
-include('../core/config.php');
+include("../core/config.php");
 session_start();
-if (isset($_POST['nId'])) {
-    if (isset($_SESSION["user"])) {
-        $id = $_POST['nId'];
-        $collect_id = $_POST['collectId'];
-        $user_id = $_SESSION["user"]['uId'];
-        $sql = "SELECT * FROM `bookrecord` WHERE `uId` = $user_id AND nId = $id";
-        $temp = get_row($sql, $count, $sql_link);
-        if ($count == 0) {
-            $sql = "INSERT INTO `bookrecord` VALUES (NULL,$id,$user_id,0,0,'watch')";
-            $temp = $sql_link->query($sql);
-            $sql = "SELECT * FROM `bookrecord` WHERE `uId` = $user_id AND nId = $id";
-            $temp = get_row($sql, $count, $sql_link);
-        }
-        $bId = $temp[0]['bId'];
-        $sql = "SELECT * FROM `keep` WHERE `uId` = $user_id AND collectId = $collect_id AND nId = $id";
-        $temp = get_row($sql, $count, $sql_link);
-        if ($count == 0) {
-            $sql = "INSERT INTO `keep` VALUES ($bId,$collect_id,$id,$user_id)";
-            $temp = $sql_link->query($sql);
-        } else {
-            $sql = "DELETE FROM `keep` WHERE `uId` = $user_id AND collectId = $collect_id AND nId = $id";
-            $temp = $sql_link->query($sql);
-        }
-    }
+// $sql_link = connect('root', '');
+if (isset($_SESSION["user"])) {
+    $user_uId = $_SESSION["user"]["uId"];
+    $sql = "SELECT * FROM `collection` AS c WHERE c.uId=$user_uId";
+    $collection_file_rows = get_row($sql, $collection_file_count, $sql_link);
+
+    $sql = "SELECT * 
+    FROM `collection` AS c, `keep` AS k,`bookrecord` AS b, `novel` AS n  
+    WHERE c.uId=$user_uId AND c.collectId=k.collectId AND k.bId=b.bId AND b.nId=n.nId";
+    $novel_rows = get_row($sql, $novel_count, $sql_link);
+
+    $_SESSION["collection_file"] = $collection_file_rows;
+    $_SESSION["collection_file_count"] = $collection_file_count;
+    $_SESSION["collection_novel"] = $novel_rows;
+    $_SESSION["collection_novel_count"] = $novel_count;
 ?>
     <script>
-        window.location.href = '../novel/novel_handle.php?nId=<?= $id ?>';
-    </script>
-<?php } else { ?>
+        window.location.href = '../collection.php';
+    </script><?php
+            } else {
+                ?>
     <script>
         window.location.href = '../index.php';
-    </script>
-<?php } ?>
+    </script><?php
+            } ?>

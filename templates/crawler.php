@@ -1,5 +1,6 @@
 <?php
-//session_start();
+include("./core/config.php");
+session_start();
 //$_SESSION['last_url'] = "{$_SERVER['PHP_SELF']}";
 ?>
 <!DOCTYPE html>

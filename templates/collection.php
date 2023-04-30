@@ -1,6 +1,17 @@
 <?php
-//session_start();
-//$_SESSION['last_url'] = "{$_SERVER['PHP_SELF']}";
+include("./core/config.php");
+session_start();
+if (isset($_SESSION["user"])) {
+    $user_uId = $_SESSION["user"]["uId"];
+    $sql = "SELECT * FROM `collection` AS c WHERE c.uId=$user_uId";
+    $collection_file_rows = get_row($sql, $collection_file_count, $sql_link);
+
+    $sql = "SELECT * 
+    FROM `collection` AS c, `keep` AS k,`bookrecord` AS b, `novel` AS n  
+    WHERE c.uId=$user_uId AND c.collectId=k.collectId AND k.bId=b.bId AND b.nId=n.nId";
+    $novel_rows = get_row($sql, $novel_count, $sql_link);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
@@ -44,15 +55,117 @@
         ?>
     </header>
 
-    <main>
+    <main class="container">
+
+        <?php
+        for ($i = 0; $i < $collection_file_count; $i++) {
+            $k = 0; ?>
+            <div class="row justify-content-md-center d-none d-lg-block margin">
+                <div class="row">
+                    <div class="border-bottom" id="block1">
+                        <a class="h1" href="./novel_list.php?list_type=COLLECTION&list_q=<?= $collection_file_rows[$i]['collectName'] ?>"><?= $collection_file_rows[$i]['collectName'] ?></a>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <?php
+                        for ($j = 0; $j < $novel_count; $j++) {
+                            if ($novel_rows[$j]['collectId'] == $collection_file_rows[$i]['collectId']) { ?>
+                                <div class="p-2 flex-row d-flex col-3">
+                                    <div class=" col-6">
+                                        <a href="./novel/novel_handle.php?nId=<?= $novel_rows[$j]['nId'] ?>">
+                                            <img src="../static/images/novel/<?= $novel_rows[$j]['nImg'] ?>">
+                                        </a>
+                                    </div>
+                                    <div class="py-2">
+                                        <p class="p-1 h-25">
+                                            <?= $novel_rows[$j]['nName'] ?>
+                                        </p>
+                                        <p class="py-3 px-1 h-50">
+                                            <?= $novel_rows[$j]['author'] ?>
+                                        </p>
+                                        <div class="btn-group h-50">
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="COMPLETED">
+                                                <input type="hidden" name="list_q" value="<?= $novel_rows[$j]['completed'] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $novel_rows[$j]['completed'] ?>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php $k++;
+                            }
+                            if ($k >= 4) {
+                                break;
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div><?php
+                } ?>
+        <!-- 塊狀1 全小方格-->
+
+
+        <!-- 單排格式 -->
+        <!-- <div class="d-flex flex-row">
+            <?php for ($i = 0; $i < 2; $i++) { ?>
+                <div class="p-2 flex-row d-flex col-3">
+                    <div class=" col-6">
+                        <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>">
+                            <img src="../static/images/novel/<?= $newest_rows[$i]['nImg'] ?>">
+                        </a>
+                    </div>
+                    <div class="py-2 flex-column d-flex">
+                        <p class="p-1">
+                            <?= $newest_rows[$i]['nName'] ?>
+                        </p>
+                        <p class="py-3 px-1">
+                            <?= $newest_rows[$i]['author'] ?>
+                        </p>
+                        <p class="p-1">
+                        </p>
+                    </div>
+                </div>
+            <?php } ?>
+        </div> -->
+        <!-- 單排格式 -->
+        <!-- <div class="d-flex flex-row   ">
+            <?php for ($i = 4; $i < 2; $i++) { ?>
+                <div class="p-2 flex-row d-flex col-3">
+                    <div class=" col-6">
+                        <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>">
+                            <img src="../static/images/novel/<?= $newest_rows[$i]['nImg'] ?>">
+                        </a>
+                    </div>
+                    <div class="py-2 flex-column d-flex">
+                        <p class="p-1">
+                            <?= $newest_rows[$i]['nName'] ?>
+                        </p>
+                        <p class="py-3 px-1">
+                            <?= $newest_rows[$i]['author'] ?>
+                        </p>
+                        <p class="p-1">
+                        </p>
+                    </div>
+                </div>
+            <?php } ?>
+        </div> -->
+
     </main>
 
     <footer>
+        <?php include('./core/footer.php') ?>
     </footer>
 </body>
 
 </html>
-
+<?php
+unset($_SESSION["collection_file"]);
+unset($_SESSION["collection_file_count"]);
+unset($_SESSION["collection_novel"]);
+unset($_SESSION["collection_novel_count"]);
+?>
 <script>
     $(document).ready(function() {
         $('#modal-show-message').modal('show');

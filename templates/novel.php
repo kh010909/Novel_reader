@@ -113,7 +113,7 @@ $collectioncount = $_SESSION['collectioncount'];
                 </button>
                 <ul class="dropdown-menu">
                     <?php for ($i = 0; $i < $collectioncount; $i++) { ?>
-                        <form action="./collection/collection_handle.php" method="post">
+                        <form action="./collection/collection_add_handle.php" method="post">
                             <input type="hidden" name="nId" value="<?= $_SESSION['novel'][0]['nId'] ?>">
                             <input type="hidden" name="collectId" value="<?= $collection_rows[$i]['collectId'] ?>">
                             <li>
