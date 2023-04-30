@@ -21,7 +21,8 @@ include './profile/profile_form.php';
         <a class="navbar-brand end-0" href="index.php">
             Language<br>Forest
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -31,46 +32,53 @@ include './profile/profile_form.php';
                 </li>
                 <?php
                 if (isset($_SESSION["user"])) {
-                ?>
+                    ?>
                     <li class="nav-item font-weight-bold">
                         <a class="nav-link" aria-current="page" href="./collection.php">Collection</a>
                     </li>
                     <li class="nav-item font-weight-bold">
                         <!-- <a class="nav-link" aria-current="page" href="./profile/profile_modal.php">Profile</a> -->
-                        <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#modal-profile">Profile</a>
+                        <a class="nav-link" aria-current="page" data-bs-toggle="modal"
+                            data-bs-target="#modal-profile">Profile</a>
                     </li>
-                <?php  } else {
-                ?>
+                <?php } else {
+                    ?>
                     <li class="nav-item font-weight-bold">
-                        <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#modal-login">Collection</a>
+                        <a class="nav-link" aria-current="page" data-bs-toggle="modal"
+                            data-bs-target="#modal-login">Collection</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" data-bs-toggle="modal" data-bs-target="#modal-login">Profile</a>
+                        <a class="nav-link " aria-current="page" data-bs-toggle="modal"
+                            data-bs-target="#modal-login">Profile</a>
                     </li>
-                <?php  }
+                <?php }
                 ?>
 
             </ul>
             <div class="d-flex align-items-center">
-                <form class="me-2 w-100" role="search" action="./search/search_handle.php">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="search" ?>
+                <form class="me-2 w-100" role="search" action="./novel_list.php">
+                    <input type="hidden" name="list_type" value="SEARCH">
+                    <input type="search" class="form-control-sm bg-transparent border-0 border-bottom rounded-0 "
+                        placeholder="Search..." aria-label="Search" name="list_q" ?>
                 </form>
                 <div class="dropdown text-end">
-                    <a href="#" class="d-block text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../static/images/icon/tree_book.png" alt="mdo" class="rounded-circle" height="31px" width="31px">
+                    <a href="#" class="d-block text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="../static/images/icon/tree_book.png" alt="mdo" class="rounded-circle" height="31px"
+                            width="31px">
                     </a>
                     <ul class="dropdown-menu text-small dropdown-menu-end mt-2">
                         <?php if (!isset($_SESSION["user"])) {
-                        ?>
+                            ?>
                             <li>
                                 <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-login">Login</a>
                             </li>
-                        <?php  } else {
-                        ?>
+                        <?php } else {
+                            ?>
                             <li>
                                 <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-logout">Logout</a>
                             </li>
-                        <?php  }
+                        <?php }
                         ?>
                     </ul>
                 </div>

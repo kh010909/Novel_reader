@@ -3,7 +3,7 @@
 //need change 1config.php and 1search....php to the right name before using
 include('./core/config.php');
 include('./core/search_relative.php')
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en-us">
@@ -24,9 +24,12 @@ include('./core/search_relative.php')
     <!-- Vue -->
     <script src="https://unpkg.com/vue@next"></script>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
     </script>
     <!-- Jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
@@ -44,19 +47,17 @@ include('./core/search_relative.php')
     <header>
         <?php include('./core/navbar.php');
         ?>
-        <div class="margin">
-            <h1>Here is the list of Novel you can choose what every you want.</h1>
-        </div>
+
     </header>
 
-    <main>
+    <main class="margin">
         <?php
         //$_GET VARIABLES THIS PAGE HAVE
         //"list_type" type we want, necessary for ALL OF FIVE TYPE *
         //"list_q", target we want, necessary for SEARCH & TAG *
         //"list_user" necessary for COLLECTION *
         //"list_page", current novel_list page
-
+        
         if (isset($_GET["list_page"])) { //KNOW CURRENT PAGE
             $page = $_GET["list_page"];
             if ($page < 1) {
@@ -109,7 +110,7 @@ include('./core/search_relative.php')
             <div class="d-none d-lg-block">
                 <?php
                 if (isset($result) && isset($length)) { //RENDER THE RESULT
-
+                
                     $name = array_column($result, 'nName');
                     $author = array_column($result, 'author');
                     $newchp = array_column($result, 'newestChapter');
@@ -121,14 +122,14 @@ include('./core/search_relative.php')
                         $i += 3;
                     }
                     if ($length < 16) {
-                ?>
+                        ?>
                         <div class="container-fluid col-8 py-3 ">
                             <h1>
                                 No more Content...
                             </h1>
                         </div>
 
-                <?php
+                        <?php
                     }
                 }
                 ?>
@@ -149,95 +150,99 @@ include('./core/search_relative.php')
                             $i += 3;
                         }
                         if ($length < 16) {
-                    ?>
+                            ?>
                             <div class="container-fluid col-8 py-3 ">
                                 <h1>
                                     No more Content...
                                 </h1>
                             </div>
 
-                    <?php
+                            <?php
                         }
                     }
                     ?>
                 </ul>
             </div>
         </div>
+        <div>
+            <!-- button row -->
+            <div class="container-fluid col-8 py-3 justify-content-center d-flex">
+                <form action="novel_list.php" method="GET">
+                    <?php
+                    if (isset($_GET["list_type"])) {
+                        ?>
+                        <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
+                        <?php
+                    }
+                    if (isset($_GET["list_q"])) {
+                        ?>
+                        <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
+                        <?php
+                    }
+                    if (isset($_GET["list_user"])) {
+                        ?>
+                        <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
+                        <?php
+                    }
+                    ?>
+                    <input type="hidden" name="list_page" value="<?= $page - 1 ?>">
+                    <input type="submit" class="btn btn-outline-success mx-3" value="上一頁">
+                </form>
+                <form action="novel_list.php" method="GET">
+                    <?php
+                    if (isset($_GET["list_type"])) {
+                        ?>
+                        <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
+                        <?php
+                    }
+                    if (isset($_GET["list_q"])) {
+                        ?>
+                        <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
+                        <?php
+                    }
+                    if (isset($_GET["list_user"])) {
+                        ?>
+                        <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
+                        <?php
+                    }
+                    ?>
+                    <input type="hidden" name="list_page" value="<?= $page + 1 ?>">
+                    <input type="submit" class="btn btn-outline-success mx-3" value="下一頁">
+                </form>
+                <form action="novel_list.php" method="GET">
+                    <?php
+                    if (isset($_GET["list_type"])) {
+                        ?>
+                        <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
+                        <?php
+                    }
+                    if (isset($_GET["list_q"])) {
+                        ?>
+                        <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
+                        <?php
+                    }
+                    if (isset($_GET["list_user"])) {
+                        ?>
+                        <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
+                        <?php
+                    }
+                    ?>
+                    <input type="number" class="btn btn-outline-success mx-3 col-3" name="list_page"
+                        value="<?= $page ?>">
+                </form>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <!-- button row -->
-        <div class="container-fluid col-8 py-3 justify-content-center d-flex">
-            <form action="novel_list.php" method="GET">
-                <?php
-                if (isset($_GET["list_type"])) {
-                ?>
-                    <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
-                <?php
-                }
-                if (isset($_GET["list_q"])) {
-                ?>
-                    <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
-                <?php
-                }
-                if (isset($_GET["list_user"])) {
-                ?>
-                    <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
-                <?php
-                }
-                ?>
-                <input type="hidden" name="list_page" value="<?= $page - 1 ?>">
-                <input type="submit" class="btn btn-outline-success mx-3" value="上一頁">
-            </form>
-            <form action="novel_list.php" method="GET">
-                <?php
-                if (isset($_GET["list_type"])) {
-                ?>
-                    <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
-                <?php
-                }
-                if (isset($_GET["list_q"])) {
-                ?>
-                    <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
-                <?php
-                }
-                if (isset($_GET["list_user"])) {
-                ?>
-                    <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
-                <?php
-                }
-                ?>
-                <input type="hidden" name="list_page" value="<?= $page + 1 ?>">
-                <input type="submit" class="btn btn-outline-success mx-3" value="下一頁">
-            </form>
-            <form action="novel_list.php" method="GET">
-                <?php
-                if (isset($_GET["list_type"])) {
-                ?>
-                    <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
-                <?php
-                }
-                if (isset($_GET["list_q"])) {
-                ?>
-                    <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
-                <?php
-                }
-                if (isset($_GET["list_user"])) {
-                ?>
-                    <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
-                <?php
-                }
-                ?>
-                <input type="number" class="btn btn-outline-success mx-3 col-3" name="list_page" value="<?= $page ?>">
-            </form>
-        </div>
+    <footer class="margin">
+        <?php include('./core/footer.php') ?>
     </footer>
 </body>
 
 </html>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#modal-show-message').modal('show');
     });
 </script>
