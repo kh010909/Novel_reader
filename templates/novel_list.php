@@ -66,12 +66,11 @@ include('./core/search_relative.php')
         } else {
             $page = 1;
         }
-        if (isset($_GET["list_user"])) {
-            $user = $_GET["list_user"];
+        if (isset($_SESSION["user"]["uId"])) {
+            $user = $_SESSION["user"]["uId"];
         } else {
             $user = null;
         }
-        $user = "hello";
 
         if (isset($_GET["list_type"])) { //QUERY TO TO DB
             $type = $_GET["list_type"];
@@ -89,10 +88,13 @@ include('./core/search_relative.php')
                     $list_title = "熱門";
                 } else
                     $list_title = "最新";
-            } else if ($type == "COLLECTION" && isset($_GET["list_q"]) && isset($_GET["list_user"])) {
-                $result = search_list($sql_link, $type, $length, $_GET["list_q"], (($page - 1) * 32), $user, $user);
+            } else if ($type == "COLLECTION" && isset($_GET["list_q"]) && isset($_SESSION["user"]["uId"])) {
+                $result = search_list($sql_link, $type, $length, $_GET["list_q"], 32, (($page - 1) * 32), $user, $user);
                 $list_title = "蒐藏夾: ";
                 $list_title .= $_GET["list_q"];
+            } else if ($type == "COMPLETED" && isset($_GET["list_q"])) {
+                $result = search_list($sql_link, $type, $length, $_GET["list_q"], 32, (($page - 1) * 32), $user);
+                $list_title = $_GET["list_q"];
             }
         } else {
             //header("Location:./index.php");
