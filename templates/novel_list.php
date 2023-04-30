@@ -2,8 +2,9 @@
 //need ctrl+f to change all the novel_list.php to the right name
 //need change 1config.php and 1search....php to the right name before using
 include('./core/config.php');
-include('./core/search_relative.php')
-    ?>
+include('./core/search_relative.php');
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en-us">
