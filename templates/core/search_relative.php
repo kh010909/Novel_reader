@@ -18,6 +18,8 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
                     SELECT collectId FROM user u, collection c WHERE 'u.uId' = 'c.uId' AND 'u.uId' = '$object_user' AND 'c.collectName' = '$target')
             )";
             $order = "bLike";
+        } else if ($type == "COMPLETED") {
+            $sql = "SELECT * FROM novel WHERE completed = '$target'";
         }
     }
 
@@ -26,12 +28,6 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
         $order = "nLike";
     } else if ($type == "TIME") {
         $sql = "SELECT * FROM novel WHERE nId";
-    } else if ($type == "COMPLETED") {
-        $sql = "SELECT * FROM novel WHERE completed = '完結'";
-    } else if ($type == "UNCOMPLETED") {
-        $sql = "SELECT * FROM novel WHERE completed = '連載'";
-    } else if ($type == "CUT") {
-        $sql = "SELECT * FROM novel WHERE completed = '斷更'";
     }
 
     if (isset($sql)) {
