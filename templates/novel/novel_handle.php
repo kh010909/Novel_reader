@@ -5,9 +5,6 @@ if (isset($_GET['nId'])) {
     $id = $_GET['nId'];
     if (isset($_SESSION["user"])) {
         $user_id = $_SESSION["user"]["uId"];
-        $sql = "SELECT * FROM `bookrecord` WHERE `nId` = $id AND `uId` = $user_id";
-        $record_row = get_row($sql, $recordcount, $sql_link);
-        $_SESSION['record'] = $record_row;
     } else {
         $user_id = 0;
     }
@@ -24,16 +21,25 @@ if (isset($_GET['nId'])) {
     $sql = "SELECT `tag` FROM `tag` WHERE `nId` = $id";
     $tag_rows = get_row($sql, $tagcount, $sql_link);
     //record
+    $sql = "SELECT * FROM `bookrecord` WHERE `nId` = $id AND `uId` = $user_id";
+    $record_row = get_row($sql, $recordcount, $sql_link);
     $sql = "SELECT c.*,u.name FROM `comment` AS c NATURAL JOIN `user` AS u WHERE `nId` = $id ORDER BY c.cNumber ";
     $comment_rows = get_row($sql, $commentcount, $sql_link);
+    $sql = "SELECT * FROM `collection` WHERE `uId` = $user_id";
+    $collection_rows = get_row($sql, $collectioncount, $sql_link);
+
+
     $_SESSION['novel'] = $novel_row;
     $_SESSION['article'] = $article_rows;
     $_SESSION['tag'] = $tag_rows;
     $_SESSION['comment'] = $comment_rows;
-    // $_SESSION['uName'] = '123';
+    $_SESSION['record'] = $record_row;
     $_SESSION['commentcount'] = $commentcount;
     $_SESSION['tagcount'] = $tagcount;
-    $_SESSION['articlecount'] = $articlecount; ?>
+    $_SESSION['articlecount'] = $articlecount;
+    $_SESSION['collection'] = $collection_rows;
+    $_SESSION['collectioncount'] = $collectioncount;
+?>
     <script>
         window.location.href = '../novel.php';
     </script>

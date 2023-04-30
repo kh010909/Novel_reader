@@ -36,9 +36,9 @@
                     <li class="nav-item mb-2">
                         <a href="index.php#block2" class="nav-link p-0">推薦</a>
                     </li>
-                    <!-- <li class="nav-item mb-2">
-                        <a href="index.php#block3" class="nav-link p-0">Finished</a>
-                    </li> -->
+                    <li class="nav-item mb-2">
+                        <a href="index.php#block3" class="nav-link p-0">完結</a>
+                    </li>
                 </ul>
             </div>
 

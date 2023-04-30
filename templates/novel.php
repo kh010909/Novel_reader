@@ -2,7 +2,7 @@
 include("./core/config.php");
 session_start();
 $novel_row = $_SESSION['novel'];
-$article_rows = $_SESSION['article'];
+$article_rows  = $_SESSION['article'];
 $tag_rows = $_SESSION['tag'];
 $record_row = $_SESSION['record'];
 $comment_rows = $_SESSION['comment'];
@@ -10,6 +10,8 @@ $commentcount = $_SESSION['commentcount'];
 $tagcount = $_SESSION['tagcount'];
 $articlecount = $_SESSION['articlecount'];
 $id = $novel_row[0]['nId'];
+$collection_rows = $_SESSION['collection'];
+$collectioncount = $_SESSION['collectioncount'];
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +23,9 @@ $id = $novel_row[0]['nId'];
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 
-    <title>LanguageForest &raquo;
-        <?= $novel_row[0]['nName'] ?>
-    </title>
+    <title>LanguageForest &raquo; <?= $novel_row[0]['nName'] ?> </title>
 
-    <link rel="stylesheet" type="text/css"
-        href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="../static/images/icon/tree_book.png" rel="icon" />
     <!-- font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,12 +34,9 @@ $id = $novel_row[0]['nId'];
     <!-- Vue -->
     <script src="https://unpkg.com/vue@next"></script>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     </script>
     <!-- Jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
@@ -69,14 +65,9 @@ $id = $novel_row[0]['nId'];
                             <img class="p-5" src="../static/images/novel/<?= $novel_row[0]['nImg'] ?>">
                         </div>
                         <div class="py-2 flex-column d-flex">
-                            <p class="p-1 h2">
-                                <?= $novel_row[0]['nName'] ?>
-                            </p>
-                            <p class="py-3 px-1 h4">
-                                <?= $novel_row[0]['author'] ?>
-                            </p>
-                            <p class="p-1 h5">
-                                <?= $novel_row[0]['description'] ?>
+                            <p class="p-1 h2"><?= $novel_row[0]['nName'] ?></p>
+                            <p class="py-3 px-1 h4"><?= $novel_row[0]['author'] ?></p>
+                            <p class="p-1 h5"><?= $novel_row[0]['description'] ?>
                             </p>
                         </div>
                     </div>
@@ -116,25 +107,27 @@ $id = $novel_row[0]['nId'];
                         <i class="bi bi-eye" title="我不想看到這本小說"></i>
                     </a>
                 <?php } ?>
+                <button type="button" class="btn btn-secondary rounded-pill dropdown-toggle px-3 m-2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-folder" title="Add into collection..."></i>
+                    <!-- Add into collection -->
+                </button>
+                <ul class="dropdown-menu">
+                    <?php for ($i = 0; $i < $collectioncount; $i++) { ?>
+                        <form action="./collection/collection_handle.php" method="post">
+                            <input type="hidden" name="nId" value="<?= $_SESSION['novel'][0]['nId'] ?>">
+                            <input type="hidden" name="collectId" value="<?= $collection_rows[$i]['collectId'] ?>">
+                            <li>
+                                <button type="submit" class="dropdown-item"> <?= $collection_rows[$i]['collectName'] ?> </button>
+                            </li>
+                        </form>
+                    <?php } ?>
+                    <li>
+                        <button type="submit" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#collectionModal">
+                            新增收藏
+                        </button>
+                    </li>
+                </ul>
 
-                <form action="" method="">
-                    <button type="button" class="btn btn-secondary dropdown-toggle px-3 m-2" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="bi bi-folder" title="Add into collection..."></i>
-                        <!-- Add into collection -->
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <button type="submit" class="dropdown-item"> 收藏 1 </button>
-                        </li>
-                        <li>
-                            <button type="submit" class="dropdown-item"> 收藏 2 </button>
-                        </li>
-                        <li>
-                            <button type="submit" class="dropdown-item"> 新增收藏... </button>
-                        </li>
-                    </ul>
-                </form>
             </div>
         <?php } ?>
 
@@ -142,17 +135,23 @@ $id = $novel_row[0]['nId'];
             標籤
             <br>
             <div class="btn-group">
+                <form action="./novel_list.php" method="GET">
+                    <input type="hidden" name="list_type" value="completed">
+                    <input type="hidden" name="list_q" value="<?= $novel_row[0]['completed'] ?>">
+                    <button type="submit" class="btn btn-outline-primary m-1 rounded-pill">
+                        <?= $novel_row[0]['completed'] ?>
+                    </button>
+                </form>
                 <?php for ($i = 0; $i < $tagcount; $i++) { ?>
                     <form action="./novel_list.php" method="GET">
                         <input type="hidden" name="list_type" value="TAG">
-                        <input type="hidden" name="list_q" value="<?= $tag_rows[$i]["tag"] ?>">
+                        <input type="hidden" name="list_q" value="<?= $tag_rows[$i]["tag"]  ?>">
                         <button type="submit" class="btn btn-outline-primary m-1 rounded-pill">
                             <?= $tag_rows[$i]["tag"] ?>
                         </button>
                     </form>
                 <?php } ?>
-                <button type="submit" class="btn btn-outline-primary m-1 rounded-pill" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                <button type="submit" class="btn btn-outline-primary m-1 rounded-pill" data-bs-toggle="modal" data-bs-target="#tagModal">
                     新增標籤
                 </button>
             </div>
@@ -163,19 +162,16 @@ $id = $novel_row[0]['nId'];
                 <?php for ($i = 0; $i < $articlecount; $i++) {
                     if ($record_row != NULL) {
                         if ($i < $record_row[0]['currCh']) { ?>
-                            <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>"
-                                class="btn btn-outline-secondary m-1 rounded-pill">
+                            <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>" class="btn btn-outline-secondary m-1 rounded-pill">
                                 <?= $article_rows[$i]['aName'] ?>
                             </a>
                         <?php } else { ?>
-                            <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>"
-                                class="btn btn-secondary m-1 rounded-pill">
+                            <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>" class="btn btn-secondary m-1 rounded-pill">
                                 <?= $article_rows[$i]['aName'] ?>
                             </a>
                         <?php }
                     } else { ?>
-                        <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>"
-                            class="btn btn-secondary m-1 rounded-pill">
+                        <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>" class="btn btn-secondary m-1 rounded-pill">
                             <?= $article_rows[$i]['aName'] ?>
                         </a>
                     <?php } ?>
@@ -197,7 +193,7 @@ $id = $novel_row[0]['nId'];
 </html>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#modal-show-message').modal('show');
     });
 </script>

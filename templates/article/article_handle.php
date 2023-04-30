@@ -23,12 +23,12 @@ if (isset($_GET['nId']) & isset($_GET['chapter'])) {
     $temp = get_row($sql, $count, $sql_link);
     //there's no record
     if ($count == 0) {
-        $sql = "INSERT INTO `bookrecord` VALUES (NULL,$id,1,0,$chapter,'watch')";
+        $sql = "INSERT INTO `bookrecord` VALUES (NULL,$id,$user_id,0,$chapter,'watch')";
         $temp = $sql_link->query($sql);
     }
     //else: update record
     else {
-        $sql = "UPDATE `bookrecord` SET `currCh` = $chapter WHERE `nId` = $id AND `uId` = 1";
+        $sql = "UPDATE `bookrecord` SET `currCh` = $chapter WHERE `nId` = $id AND `uId` = $user_id";
         $temp = $sql_link->query($sql);
     }
 ?>

@@ -12,7 +12,7 @@ if (isset($_GET['nId'])) {
     $temp = get_row($sql, $count, $sql_link);
     //there's no record
     if ($count == 0) {
-        $sql = "INSERT INTO `bookrecord` VALUES (NULL,$id,1,0,0,'hate')";
+        $sql = "INSERT INTO `bookrecord` VALUES (NULL,$id,$user_id,0,0,'hate')";
         $temp = $sql_link->query($sql);
     }
     //else: update record
@@ -22,12 +22,12 @@ if (isset($_GET['nId'])) {
         if ($prefer == 'hate') {
             $prefer = 'watch';
             $prefer = $sql_link->quote($prefer);
-            $sql = "UPDATE `bookrecord` SET `preference` = $prefer WHERE `nId` = $id AND `uId` = 1";
+            $sql = "UPDATE `bookrecord` SET `preference` = $prefer WHERE `nId` = $id AND `uId` = $user_id";
             $temp = $sql_link->query($sql);
         } else if ($prefer == 'watch') {
             $prefer = 'hate';
             $prefer = $sql_link->quote($prefer);
-            $sql = "UPDATE `bookrecord` SET `preference` = $prefer WHERE `nId` = $id AND `uId` = 1";
+            $sql = "UPDATE `bookrecord` SET `preference` = $prefer WHERE `nId` = $id AND `uId` = $user_id";
             $temp = $sql_link->query($sql);
         }
     } ?>
