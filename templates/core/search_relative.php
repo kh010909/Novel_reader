@@ -13,9 +13,9 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
         } else if ($type == "TAG") {
             $sql = "SELECT * FROM novel n NATURAL JOIN tag t WHERE tag LIKE '%$target%'";
         } else if ($type == "COLLECTION" && isset($object_user)) {
-            $sql = "SELECT * FROM novel n NATURAL JOIN bookrecord WHERE nId IN (
-                SELECT nId FROM bookrecord b, keep k WHERE 'b.bId' = 'k.bId' AND collectId IN (
-                    SELECT collectId FROM user u, collection c WHERE 'u.uId' = 'c.uId' AND 'u.uId' = '$object_user' AND 'c.collectName' = '$target')
+            $sql = "SELECT * FROM novel n NATURAL JOIN bookrecord WHERE n.nId IN (
+                SELECT b.nId FROM bookrecord b, keep k WHERE b.bId = k.bId AND collectId IN (
+                    SELECT collectId FROM user u, collection c WHERE u.uId = c.uId AND u.uId = '$object_user' AND c.collectName = '$target')
             )";
             $order = "bLike";
         } else if ($type == "COMPLETED") {
@@ -33,7 +33,7 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
     if (isset($sql)) {
         if (isset($cur_user)) {
             $avoid = " SELECT nId FROM bookrecord WHERE uId = '$cur_user' AND preference = 'HATE'";
-            $sql .= " AND nId NOt IN ($avoid)";
+            $sql .= " AND nId NOT IN ($avoid)";
         }
         if (isset($order)) {
             $sql .= " ORDER BY $order DESC";
