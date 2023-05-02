@@ -9,7 +9,7 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
     $sql = null;
     if (isset($target)) { //get data from novel table
         if ($type == "SEARCH") {
-            $sql = "SELECT * FROM novel NATURAL JOIN tag WHERE tag LIKE '%$target%' OR nName LIKE '%$target%' ";
+            $sql = "SELECT DISTINCT novel.* FROM novel NATURAL JOIN tag WHERE tag LIKE '%$target%' OR nName LIKE '%$target%' ";
         } else if ($type == "TAG") {
             $sql = "SELECT * FROM novel n NATURAL JOIN tag t WHERE tag LIKE '%$target%'";
         } else if ($type == "COLLECTION" && isset($object_user)) {
