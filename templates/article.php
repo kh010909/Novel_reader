@@ -1,6 +1,13 @@
 <?php
 include("./core/config.php");
 session_start();
+if (!isset($_SESSION['article_content'])) {
+    $chapter = $_SESSION['chapter'];
+    $id = $_SESSION['id']; ?>
+    <script>
+        window.location.href = "./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $chapter ?>";
+    </script>
+<?php }
 $article_row = $_SESSION['article_content'];
 $totalarticlecount = $_SESSION['totalarticlecount'];
 $chapter = $_SESSION['chapter'];
@@ -85,3 +92,6 @@ $id = $_SESSION['id'];
         $('#modal-show-message').modal('show');
     });
 </script>
+<?php
+unset($_SESSION['article_content']);
+unset($_SESSION['totalarticlecount']); ?>
