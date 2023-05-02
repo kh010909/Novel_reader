@@ -83,9 +83,13 @@ if (@$_POST["method"] == "login") {
                         VALUES ($name, $password, '$email', '$permission')";
 
                 if ($sql_link->exec($sql)) {
+                    $sql = "SELECT * FROM `user` WHERE `name`= $name ";
+                    $result = $sql_link->query($sql);
+                    $row = $result->fetch();
                     $return_msg = "Sign up successfully";
                     // 將會員名稱存入session
                     $_SESSION["user"] = [
+                        "uId" => $row["uId"],
                         "name" => $name,
                         "email" => $email,
                         "permission" => $permission
