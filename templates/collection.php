@@ -58,22 +58,22 @@ if (isset($_SESSION["user"])) {
     <main class="container">
         <?php
         if ($collection_file_count == 0) { ?>
-            <div class="margin h3">There's no content...</div>
+            <div class="margin h3 pb-5 pt-2">There's no content...</div>
         <?php } ?>
         <?php
         for ($i = 0; $i < $collection_file_count; $i++) {
             $k = 0; ?>
             <div class="row justify-content-md-center d-none d-lg-block margin">
                 <div class="row">
-                    <div class="border-bottom" id="block1">
-                        <a class="h1" href="./novel_list.php?list_type=COLLECTION&list_q=<?= $collection_file_rows[$i]['collectName'] ?>"><?= $collection_file_rows[$i]['collectName'] ?></a>
+                    <div class="border-bottom pb-2 mb-1" id="block1">
+                        <a class="h1" href="./novel_list.php?list_type=COLLECTION&list_q=<?= $collection_file_rows[$i]['collectName'] ?>" title="To <?= $collection_file_rows[$i]['collectName'] ?>"><?= $collection_file_rows[$i]['collectName'] ?></a>
                     </div>
-                    <div class="d-flex flex-row">
+                    <div class="d-flex flex-row pt-3 mb-3">
                         <?php
                         for ($j = 0; $j < $novel_count; $j++) {
                             if ($novel_rows[$j]['collectId'] == $collection_file_rows[$i]['collectId']) { ?>
                                 <div class="p-2 flex-row d-flex col-3">
-                                    <div class=" col-6">
+                                    <div class=" col-6 me-2">
                                         <a href="./novel/novel_handle.php?nId=<?= $novel_rows[$j]['nId'] ?>">
                                             <img src="../static/images/novel/<?= $novel_rows[$j]['nImg'] ?>">
                                         </a>
@@ -96,18 +96,20 @@ if (isset($_SESSION["user"])) {
                                         </div>
                                     </div>
                                 </div>
-                        <?php $k++;
+                            <?php $k++;
                             }
                             if ($k >= 4) {
                                 break;
                             }
                         }
+                        if ($k == 0) { ?>
+                            <div class="mb-5 h3">It's no novel in the collection...</div>
+                        <?php }
                         ?>
                     </div>
                 </div>
             </div><?php
                 } ?>
-        <!-- 塊狀1 全小方格-->
 
     </main>
 

@@ -62,15 +62,15 @@ for ($i = 0; $i < $completecount; $i++) {
         <!-- 塊狀1 全小方格-->
         <div class="row justify-content-md-center d-none d-lg-block margin">
             <div class="row">
-                <div class="border-bottom" id="block1">
-                    <a class="h1" href="./novel_list.php?list_type=TIME">最新小說</a>
+                <div class="border-bottom pb-2 mb-1" id="block1">
+                    <a class="h1" href="./novel_list.php?list_type=TIME" title="搜尋 最新小說 ">最新小說</a>
                 </div>
                 <!-- 單排格式 -->
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row pt-3 pb-1">
                     <?php for ($i = 0; $i < 4; $i++) { ?>
                         <div class="p-2 flex-row d-flex col-3">
-                            <div class="col-6 col">
-                                <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>">
+                            <div class="col-6 col me-2">
+                                <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>" title="<?= $newest_rows[$i]['nName'] ?>">
                                     <img src="../static/images/novel/<?= $newest_rows[$i]['nImg'] ?>">
                                 </a>
                             </div>
@@ -103,11 +103,11 @@ for ($i = 0; $i < $completecount; $i++) {
                     <?php } ?>
                 </div>
                 <!-- 單排格式 -->
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row pt-3 pb-1">
                     <?php for ($i = 4; $i < 8; $i++) { ?>
                         <div class="p-2 flex-row d-flex col-3">
-                            <div class="col-6">
-                                <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>">
+                            <div class="col-6 me-2">
+                                <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>" title="<?= $newest_rows[$i]['nName'] ?>">
                                     <img src="../static/images/novel/<?= $newest_rows[$i]['nImg'] ?>">
                                 </a>
                             </div>
@@ -143,14 +143,14 @@ for ($i = 0; $i < $completecount; $i++) {
         <!-- 塊狀2 大方格-->
         <div class="row justify-content-md-center d-none d-lg-block margin">
             <div class="row">
-                <div class="border-bottom" id="block2">
-                    <a class="h1" href="./novel_list.php?list_type=LIKE">熱門小說</a>
+                <div class="border-bottom pb-2 mb-1" id="block2">
+                    <a class="h1" href="./novel_list.php?list_type=LIKE" title="搜尋 最新小說">熱門小說</a>
                 </div>
                 <!-- 單位格式 (大)-->
                 <?php $i = 0; ?>
-                <div class="py-3 pl-3 pr-0 col-3">
+                <div class="py-3 pl-3 pr-0 col-3 pt-4 pb-1">
                     <div>
-                        <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?>">
+                        <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?>" title="<?= $popularity_rows[$i]['nName'] ?>">
                             <img src="../static/images/novel/<?= $popularity_rows[$i]['nImg'] ?>">
                         </a>
                     </div>
@@ -181,13 +181,13 @@ for ($i = 0; $i < $completecount; $i++) {
                 </div>
                 <div class="col">
                     <!-- 單排格式 -->
-                    <div class="d-flex flex-row ">
+                    <div class="d-flex flex-row pt-3 pb-1">
                         <!-- 單位格式 (塊狀2 小)-->
                         <?php for ($i = 1; $i < 4; $i++) { ?>
                             <!-- 單位格式 (塊狀2 小)-->
                             <div class="p-2 flex-row d-flex col-4">
-                                <div class="col-6">
-                                    <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?> ">
+                                <div class="col-6 me-2">
+                                    <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?> " title="<?= $popularity_rows[$i]['nName'] ?>">
                                         <img src="../static/images/novel/<?= $popularity_rows[$i]['nImg'] ?>">
                                     </a>
                                 </div>
@@ -219,13 +219,13 @@ for ($i = 0; $i < $completecount; $i++) {
                         <?php } ?>
                     </div>
                     <!-- 單排格式 -->
-                    <div class="d-flex flex-row ">
+                    <div class="d-flex flex-row pt-3 pb-1">
                         <!-- 單位格式 (塊狀2 小)-->
                         <?php for ($i = 4; $i < 7; $i++) { ?>
                             <!-- 單位格式 (塊狀2 小)-->
                             <div class="p-2 flex-row d-flex col-4">
-                                <div class="col-6">
-                                    <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?> ">
+                                <div class="col-6 me-2">
+                                    <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?> " title="<?= $popularity_rows[$i]['nName'] ?>">
                                         <img src="../static/images/novel/<?= $popularity_rows[$i]['nImg'] ?>">
                                     </a>
                                 </div>
@@ -261,19 +261,19 @@ for ($i = 0; $i < $completecount; $i++) {
         </div>
 
         <!-- 塊狀1 全小方格-->
-        <div class="row justify-content-md-center d-none d-lg-block margin">
+        <div class="row justify-content-md-center d-none d-lg-block margin mb-5">
             <div class="row">
-                <div class="border-bottom" id="block3">
-                    <a class="h1" href="./novel_list.php?list_type=COMPLETED&list_q=完結">完結小說</a>
+                <div class="border-bottom pb-2 mb-1" id="block3">
+                    <a class="h1" href="./novel_list.php?list_type=COMPLETED&list_q=完結" title="搜尋 完結小說">完結小說</a>
                 </div>
                 <!-- 單排格式 -->
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row pt-3 pb-1">
                     <?php
                     if ($completecount < 4) {
                         for ($i = 0; $i < $completecount; $i++) { ?>
                             <div class="p-2 flex-row d-flex col-3">
-                                <div class="col-6 col">
-                                    <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>">
+                                <div class="col-6 col me-2">
+                                    <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>" title="<?= $complete_rows[$i]['nName'] ?>">
                                         <img src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
                                     </a>
                                 </div>
@@ -306,9 +306,9 @@ for ($i = 0; $i < $completecount; $i++) {
                         <?php }
                     } else {
                         for ($i = 0; $i < 4; $i++) { ?>
-                            <div class="p-2 flex-row d-flex col-3">
-                                <div class="col-6 col">
-                                    <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>">
+                            <div class="p-2 flex-row d-flex col-3 pt-3 pb-1">
+                                <div class="col-6 col me-2">
+                                    <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>" title="<?= $complete_rows[$i]['nName'] ?>">
                                         <img src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
                                     </a>
                                 </div>
