@@ -10,7 +10,7 @@
             <form action="./tag/tag_add.php" method="post">
                 <div class="modal-body">
                     <input type="hidden" name="nId" value="<?= $_SESSION['novel'][0]['nId'] ?>">
-                    <textarea class="col-12 lh-base border-0" rows="1" name="tag"></textarea>
+                    <textarea placeholder="請輸入您想新增的標籤" class="col-12 lh-base border-0" rows="1" name="tag"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
@@ -33,7 +33,7 @@
             <form action="./collection/collection_add.php" method="post">
                 <div class="modal-body">
                     <input type="hidden" name="nId" value="<?= $_SESSION['novel'][0]['nId'] ?>">
-                    <textarea class="col-12 lh-base border-0" rows="1" name="collection"></textarea>
+                    <textarea placeholder="請輸入收藏夾名稱" class="col-12 lh-base border-0" rows="1" name="collection"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
