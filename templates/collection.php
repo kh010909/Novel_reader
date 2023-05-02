@@ -56,7 +56,10 @@ if (isset($_SESSION["user"])) {
     </header>
 
     <main class="container">
-
+        <?php
+        if ($collection_file_count == 0) { ?>
+            <div class="margin h3">There's no content...</div>
+        <?php } ?>
         <?php
         for ($i = 0; $i < $collection_file_count; $i++) {
             $k = 0; ?>
