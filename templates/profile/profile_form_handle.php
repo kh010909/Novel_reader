@@ -6,7 +6,7 @@ if (!isset($_SESSION["profile"]) || !isset($_SESSION["user"])) {
     exit();
 }
 
-//include("../core/config.php");
+include("../core/config.php");
 
 $return_msg = "";
 
