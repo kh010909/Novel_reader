@@ -1,6 +1,12 @@
 <?php
 include("./core/config.php");
 session_start();
+if (!isset($_SESSION['article'])) {
+    $id = $_SESSION['novel'][0]['nId']; ?>
+    <script>
+        window.location.href = './novel/novel_handle.php?nId=<?= $id ?>';
+    </script>
+<?php }
 $novel_row = $_SESSION['novel'];
 $article_rows  = $_SESSION['article'];
 $tag_rows = $_SESSION['tag'];
@@ -197,4 +203,13 @@ $collectioncount = $_SESSION['collectioncount'];
         $('#modal-show-message').modal('show');
     });
 </script>
-<?php include("./novel/modal.php"); ?>
+<?php include("./novel/modal.php");
+unset($_SESSION['article']);
+unset($_SESSION['tag']);
+unset($_SESSION['record']);
+unset($_SESSION['comment']);
+unset($_SESSION['commentcount']);
+unset($_SESSION['tagcount']);
+unset($_SESSION['articlecount']);
+unset($_SESSION['collection']);
+unset($_SESSION['collectioncount']); ?>
