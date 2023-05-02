@@ -90,9 +90,9 @@ if (@$_POST["method"] == "login") {
                     // 將會員名稱存入session
                     $_SESSION["user"] = [
                         "uId" => $row["uId"],
-                        "name" => $name,
-                        "email" => $email,
-                        "permission" => $permission
+                        "name" => $row["name"],
+                        "email" => $row["email"],
+                        "permission" => $row["permission"]
                     ];
                 } else {
                     $return_msg = "Fail to write data to database";
