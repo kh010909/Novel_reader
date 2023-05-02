@@ -106,52 +106,6 @@ if (isset($_SESSION["user"])) {
                 } ?>
         <!-- 塊狀1 全小方格-->
 
-
-        <!-- 單排格式 -->
-        <!-- <div class="d-flex flex-row">
-            <?php for ($i = 0; $i < 2; $i++) { ?>
-                <div class="p-2 flex-row d-flex col-3">
-                    <div class=" col-6">
-                        <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>">
-                            <img src="../static/images/novel/<?= $newest_rows[$i]['nImg'] ?>">
-                        </a>
-                    </div>
-                    <div class="py-2 flex-column d-flex">
-                        <p class="p-1">
-                            <?= $newest_rows[$i]['nName'] ?>
-                        </p>
-                        <p class="py-3 px-1">
-                            <?= $newest_rows[$i]['author'] ?>
-                        </p>
-                        <p class="p-1">
-                        </p>
-                    </div>
-                </div>
-            <?php } ?>
-        </div> -->
-        <!-- 單排格式 -->
-        <!-- <div class="d-flex flex-row   ">
-            <?php for ($i = 4; $i < 2; $i++) { ?>
-                <div class="p-2 flex-row d-flex col-3">
-                    <div class=" col-6">
-                        <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>">
-                            <img src="../static/images/novel/<?= $newest_rows[$i]['nImg'] ?>">
-                        </a>
-                    </div>
-                    <div class="py-2 flex-column d-flex">
-                        <p class="p-1">
-                            <?= $newest_rows[$i]['nName'] ?>
-                        </p>
-                        <p class="py-3 px-1">
-                            <?= $newest_rows[$i]['author'] ?>
-                        </p>
-                        <p class="p-1">
-                        </p>
-                    </div>
-                </div>
-            <?php } ?>
-        </div> -->
-
     </main>
 
     <footer>
@@ -160,12 +114,12 @@ if (isset($_SESSION["user"])) {
 </body>
 
 </html>
-<?php
-unset($_SESSION["collection_file"]);
-unset($_SESSION["collection_file_count"]);
-unset($_SESSION["collection_novel"]);
-unset($_SESSION["collection_novel_count"]);
-?>
+<!-- <?php
+        // unset($_SESSION["collection_file"]);
+        // unset($_SESSION["collection_file_count"]);
+        // unset($_SESSION["collection_novel"]);
+        // unset($_SESSION["collection_novel_count"]);
+        ?> -->
 <script>
     $(document).ready(function() {
         $('#modal-show-message').modal('show');
