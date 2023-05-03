@@ -147,9 +147,9 @@ if (!isset($_SESSION["post"]["id"])) { //know to post id
                                                                     ?>><b><?= $comment_rows[$i]["name"] ?></b></p>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between card-text">
+                                <!-- <div class="d-flex justify-content-between card-text">
                                     <p class="col-12 lh-base"><?= $comment_rows[$i]["cContent"] ?></p>
-                                </div>
+                                </div> -->
                                 <form action="./comment/comment_delete.php" method="post">
                                     <input type="hidden" name="comment_id" value="<?= $comment_rows[$i]["cNumber"] ?>">
                                     <input type="hidden" name="comment_name" value="<?= $comment_rows[$i]["name"] ?>">

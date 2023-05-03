@@ -20,7 +20,7 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
         } else if ($type == "TAG") {
             $sql = "SELECT * FROM novel NATURAL JOIN tag t WHERE tag LIKE '%$target%'";
         } else if ($type == "COLLECTION" && isset($object_user)) {
-            $sql = "SELECT * FROM novel NATURAL JOIN bookrecord WHERE n.nId IN (
+            $sql = "SELECT * FROM novel NATURAL JOIN bookrecord WHERE novel.nId IN (
                 SELECT b.nId FROM bookrecord b, keep k WHERE b.bId = k.bId AND collectId IN (
                     SELECT collectId FROM user u, collection c WHERE u.uId = c.uId AND u.uId = '$object_user' AND c.collectName = '$target')
             )";

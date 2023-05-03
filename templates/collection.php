@@ -103,7 +103,7 @@ if (isset($_SESSION["user"])) {
                             }
                         }
                         if ($k == 0) { ?>
-                            <div class="mb-5 h3">It's no novel in the collection...</div>
+                            <div class="mb-5 h3">There's no novel in the collection...</div>
                         <?php }
                         ?>
                     </div>
