@@ -9,17 +9,18 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
     $sql = null;
     if (isset($target)) { //get data from novel table
         if ($type == "SEARCH") {
-            $sql = "SELECT DISTINCT novel.* FROM novel NATURAL JOIN tag WHERE tag LIKE '%$target%' OR nName LIKE '%$target%' OR completed = '$target'";
+            $sql = "SELECT DISTINCT novel.* FROM novel NATURAL JOIN tag WHERE (tag LIKE '%$target%' OR nName LIKE '%$target%' OR completed = '$target'";
             if (isset($cur_user)) {
                 $sql .= " OR novel.nId IN (
                     SELECT b.nId FROM bookrecord b, keep k WHERE b.bId = k.bId AND collectId IN (
                         SELECT collectId FROM user u, collection c WHERE u.uId = c.uId AND u.uId = '$cur_user' AND c.collectName LIKE '%$target%')
                 )";
             }
+            $sql .= ")";
         } else if ($type == "TAG") {
-            $sql = "SELECT * FROM novel n NATURAL JOIN tag t WHERE tag LIKE '%$target%'";
+            $sql = "SELECT * FROM novel NATURAL JOIN tag t WHERE tag LIKE '%$target%'";
         } else if ($type == "COLLECTION" && isset($object_user)) {
-            $sql = "SELECT * FROM novel n NATURAL JOIN bookrecord WHERE n.nId IN (
+            $sql = "SELECT * FROM novel NATURAL JOIN bookrecord WHERE n.nId IN (
                 SELECT b.nId FROM bookrecord b, keep k WHERE b.bId = k.bId AND collectId IN (
                     SELECT collectId FROM user u, collection c WHERE u.uId = c.uId AND u.uId = '$object_user' AND c.collectName = '$target')
             )";
@@ -38,12 +39,11 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
 
     if (isset($sql)) {
         if (isset($cur_user)) {
-            $avoid = " SELECT nId FROM bookrecord WHERE uId = '$cur_user' AND preference = 'HATE'";
-            $sql .= " AND nId NOT IN ($avoid)";
+            $avoid = " SELECT nId FROM bookrecord WHERE uId = '$cur_user' AND preference = 'hate'";
+            $sql .= " AND (novel.nId NOT IN ($avoid))";
         }
         if (isset($order)) {
             $sql .= " ORDER BY $order DESC";
-
         } else {
             $sql .= " ORDER BY nTime DESC";
         }
@@ -54,9 +54,7 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
         $output = get_row($sql, $length, $sql_link);
         return $output;
     }
-
 }
 //you may need to know: 1.user name shold be unique
 //don't set $cur_user if you want them to see things they hate
 //the database may have change in some days, make sure the sql statement is right (ex.COLLECTION & AVOID)
-?>

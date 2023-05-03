@@ -18,6 +18,8 @@ $articlecount = $_SESSION['articlecount'];
 $id = $novel_row[0]['nId'];
 $collection_rows = $_SESSION['collection'];
 $collectioncount = $_SESSION['collectioncount'];
+$collection_novel_rows = $_SESSION['collection_novel'];
+$collectionNovelCount = $_SESSION['collection_novel_count'];
 ?>
 
 <!DOCTYPE html>
@@ -84,16 +86,16 @@ $collectioncount = $_SESSION['collectioncount'];
             <div class="btn-group">
                 <?php if ($record_row != NULL) {
                     if ($record_row[0]['bLike']) { ?>
-                        <a href="./like/like_handle.php?nId=<?= $id ?>" class="btn btn-secondary px-3 m-2 rounded-pill">
+                        <a href="./like/like_handle.php?nId=<?= $id ?>" class="btn btn-primary px-3 m-2 rounded-pill">
                             <i class="bi bi-hand-thumbs-up" title="取消喜歡"></i>
                         </a>
                     <?php } else { ?>
-                        <a href="./like/like_handle.php?nId=<?= $id ?>" class="btn btn-primary px-3 m-2 rounded-pill">
+                        <a href="./like/like_handle.php?nId=<?= $id ?>" class="btn btn-secondary px-3 m-2 rounded-pill">
                             <i class="bi bi-hand-thumbs-up" title="我喜歡這本小說"></i>
                         </a>
                     <?php }
                 } else { ?>
-                    <a href="./like/like_handle.php?nId=<?= $id ?>" class="btn btn-primary px-3 m-2 rounded-pill">
+                    <a href="./like/like_handle.php?nId=<?= $id ?>" class="btn btn-secondary px-3 m-2 rounded-pill">
                         <i class="bi bi-hand-thumbs-up" title="我喜歡這本小說"></i>
                     </a>
                 <?php } ?>
@@ -118,12 +120,19 @@ $collectioncount = $_SESSION['collectioncount'];
                     <!-- Add into collection -->
                 </button>
                 <ul class="dropdown-menu">
-                    <?php for ($i = 0; $i < $collectioncount; $i++) { ?>
+                    <?php for ($i = 0; $i < $collectioncount; $i++) {
+                    ?>
                         <form action="./collection/collection_add_handle.php" method="post">
                             <input type="hidden" name="nId" value="<?= $_SESSION['novel'][0]['nId'] ?>">
                             <input type="hidden" name="collectId" value="<?= $collection_rows[$i]['collectId'] ?>">
                             <li>
-                                <button type="submit" class="dropdown-item"> <?= $collection_rows[$i]['collectName'] ?> </button>
+                                <?php $collection_novel = array_column($collection_novel_rows, 'collectId');
+
+                                if (in_array($collection_rows[$i]['collectId'], $collection_novel)) { ?>
+                                    <button type="submit" class="dropdown-item text-bg-primary"><?= $collection_rows[$i]['collectName'] ?> </button>
+                                <?php } else { ?>
+                                    <button type="submit" class="dropdown-item"> <?= $collection_rows[$i]['collectName'] ?> </button>
+                                <?php } ?>
                             </li>
                         </form>
                     <?php } ?>
@@ -142,7 +151,7 @@ $collectioncount = $_SESSION['collectioncount'];
             <br>
             <div class="btn-group">
                 <form action="./novel_list.php" method="GET">
-                    <input type="hidden" name="list_type" value="completed">
+                    <input type="hidden" name="list_type" value="COMPLETED">
                     <input type="hidden" name="list_q" value="<?= $novel_row[0]['completed'] ?>">
                     <button type="submit" class="btn btn-outline-primary m-1 rounded-pill">
                         <?= $novel_row[0]['completed'] ?>

@@ -27,6 +27,8 @@ if (isset($_GET['nId'])) {
     $comment_rows = get_row($sql, $commentcount, $sql_link);
     $sql = "SELECT * FROM `collection` WHERE `uId` = $user_id";
     $collection_rows = get_row($sql, $collectioncount, $sql_link);
+    $sql = "SELECT * FROM `collection` AS c, `keep` AS k, `bookrecord` AS b WHERE c.uId = $user_id AND b.nId=$id AND c.collectId=k.collectId AND k.bId=b.Bid";
+    $collection_novel_rows = get_row($sql, $collectionNovelCount, $sql_link);
 
 
     $_SESSION['novel'] = $novel_row;
@@ -39,6 +41,8 @@ if (isset($_GET['nId'])) {
     $_SESSION['articlecount'] = $articlecount;
     $_SESSION['collection'] = $collection_rows;
     $_SESSION['collectioncount'] = $collectioncount;
+    $_SESSION['collection_novel'] = $collection_novel_rows;
+    $_SESSION['collection_novel_count'] = $collectionNovelCount;
 ?>
     <script>
         window.location.href = '../novel.php';

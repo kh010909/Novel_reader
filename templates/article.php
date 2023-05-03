@@ -63,7 +63,7 @@ $id = $_SESSION['id'];
         <p class="h4 py-4"><?= $article_row[0]['aName'] ?></p>
         <p class="h5"><?= $article_row[0]['aContent'] ?></p>
         <div class="btn-group container">
-            <div class="col-2">
+            <div class="container-fluid col-8 py-3 justify-content-center d-flex">
                 <?php
                 $prevchapter = $chapter - 1;
                 $nextchapter = $chapter + 1;
