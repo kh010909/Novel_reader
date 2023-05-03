@@ -157,9 +157,14 @@ $collectioncount = $_SESSION['collectioncount'];
                         </button>
                     </form>
                 <?php } ?>
-                <button type="submit" class="btn btn-outline-primary m-1 rounded-pill" data-bs-toggle="modal" data-bs-target="#tagModal">
-                    新增標籤
-                </button>
+                <?php if (!isset($_SESSION['user'])) { ?>
+                    <a class="btn btn-outline-primary m-1 rounded-pill" aria-current="page" data-bs-toggle="modal" data-bs-target="#modal-login">新增標籤</a>
+                <?php } else { ?>
+                    <button type="submit" class="btn btn-outline-primary m-1 rounded-pill" data-bs-toggle="modal" data-bs-target="#tagModal">
+                        新增標籤
+                    </button>
+                <?php } ?>
+
             </div>
         </div>
         <div class="border-bottom h2 mt-3">
