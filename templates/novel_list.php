@@ -58,7 +58,9 @@ session_start();
         //"list_q", target we want, necessary for SEARCH & TAG *
         //"list_user" necessary for COLLECTION *
         //"list_page", current novel_list page
-        
+        $length = null;
+        $type = null;
+
         if (isset($_GET["list_page"])) { //KNOW CURRENT PAGE
             $page = $_GET["list_page"];
             if ($page < 1) {
@@ -76,7 +78,7 @@ session_start();
         if (isset($_GET["list_type"])) { //QUERY TO TO DB
             $type = $_GET["list_type"];
             if (($type == "SEARCH" || $type == "TAG") && (isset($_GET["list_q"]))) {
-                $result = search_list($sql_link, $type, $length, $_GET["list_q"], 32, (($page - 1) * 32), $user);
+                $result = search_list($sql_link, $type, $length, $_GET["list_q"], 33, (($page - 1) * 32), $user);
                 if ($type == "SEARCH") {
                     $list_title = "搜尋結果: ";
                 } else
@@ -84,17 +86,17 @@ session_start();
 
                 $list_title .= $_GET["list_q"];
             } else if ($type == "LIKE" || $type == "TIME") {
-                $result = search_list($sql_link, $type, $length, "", 32, (($page - 1) * 32), $user);
+                $result = search_list($sql_link, $type, $length, "", 33, (($page - 1) * 32), $user);
                 if ($type == "LIKE") {
                     $list_title = "熱門";
                 } else
                     $list_title = "最新";
             } else if ($type == "COLLECTION" && isset($_GET["list_q"]) && isset($_SESSION["user"]["uId"])) {
-                $result = search_list($sql_link, $type, $length, $_GET["list_q"], 32, (($page - 1) * 32), $user, $user);
+                $result = search_list($sql_link, $type, $length, $_GET["list_q"], 33, (($page - 1) * 32), $user, $user);
                 $list_title = "蒐藏夾: ";
                 $list_title .= $_GET["list_q"];
             } else if ($type == "COMPLETED" && isset($_GET["list_q"])) {
-                $result = search_list($sql_link, $type, $length, $_GET["list_q"], 32, (($page - 1) * 32), $user);
+                $result = search_list($sql_link, $type, $length, $_GET["list_q"], 33, (($page - 1) * 32), $user);
                 $list_title = $_GET["list_q"];
             }
         } else {
@@ -121,18 +123,10 @@ session_start();
                     $nID = array_column($result, 'nId');
 
                     for ($i = 0; $i < $length; $i++) {
-                        block_row($nID, $nimg, $name, $author, $newchp, $i, 4);
-                        $i += 3;
-                    }
-                    if ($length < 16) {
-                        ?>
-                        <div class="container-fluid col-8 py-3 ">
-                            <h1>
-                                No more Content...
-                            </h1>
-                        </div>
-
-                        <?php
+                        if ($i < 32) {
+                            block_row($nID, $nimg, $name, $author, $newchp, $i, 4);
+                            $i += 3;
+                        }
                     }
                 }
                 ?>
@@ -149,25 +143,66 @@ session_start();
                         $nID = array_column($result, 'nId');
 
                         for ($i = 0; $i < $length; $i++) {
-                            block_row_small($nID, $nimg, $name, $author, $newchp, $i, 4);
-                            $i += 3;
-                        }
-                        if ($length < 16) {
-                            ?>
-                            <div class="container-fluid col-8 py-3 ">
-                                <h1>
-                                    No more Content...
-                                </h1>
-                            </div>
-
-                            <?php
+                            if ($i < 32) {
+                                block_row_small($nID, $nimg, $name, $author, $newchp, $i, 4);
+                                $i += 3;
+                            }
                         }
                     }
                     ?>
                 </ul>
             </div>
         </div>
+        <?php
+        $last_page = false;
+        if ($length < 33) {
+            $last_or_no = "This is the Last page.";
+            $last_page = true;
+            if (isset($_GET["list_q"])) {
+                $list_q = $_GET["list_q"];
+            } else {
+                $list_q = null;
+            }
+            if ($length == 0) {
+                $length2 = 0;
+                $right_pos = search_list($sql_link, $type, $length2, $list_q, null, null, $user, $user);
+                if ($length2 == 0) {
+                    //return to page 1
+                    $last_or_no = "No content currently.";
+                    $page = 1;
+                } else {
+                    //go to where last page is
+                    $target_page = floor($length2 / 32) + 1;
+                    print($target_page);
+                    $target_get_string = "./novel_list.php?";
+                    if (isset($_GET["list_type"])) {
+                        $target_get_string .= "list_type=$_GET[list_type]";
+                    }
+                    if (isset($_GET["list_q"])) {
+                        $target_get_string .= "&list_q=$_GET[list_q]";
+                    }
+                    if (isset($_GET["list_user"])) {
+                        $target_get_string .= "&list_user=$_GET[list_user]";
+                    }
+                    $target_get_string .= "&list_page=$target_page";
+                    ?>
+                    <script type="text/javascript">
+                        window.location = "<?= $target_get_string ?>"
+                    </script>
+                    <?php
+                }
+            }
+            ?>
+            <div class="container-fluid col-8 py-3 ">
+                <h1>
+                    <?= $last_or_no ?>
+                </h1>
+            </div>
+            <?php
+        }
+        ?>
         <div>
+
             <!-- button row -->
             <div class="container-fluid col-8 py-3 justify-content-center d-flex">
                 <form action="novel_list.php" method="GET">
@@ -189,7 +224,17 @@ session_start();
                     }
                     ?>
                     <input type="hidden" name="list_page" value="<?= $page - 1 ?>">
-                    <input type="submit" class="btn btn-outline-success mx-3" value="上一頁">
+                    <?php
+                    if ($page == 1) {
+                        ?>
+                        <p class="btn btn-outline-success mx-3">上一頁</p>
+                        <?php
+                    } else {
+                        ?>
+                        <input type="submit" class="btn btn-outline-success mx-3" value="上一頁">
+                        <?php
+                    }
+                    ?>
                 </form>
                 <form action="novel_list.php" method="GET">
                     <?php
@@ -210,9 +255,19 @@ session_start();
                     }
                     ?>
                     <input type="hidden" name="list_page" value="<?= $page + 1 ?>">
-                    <input type="submit" class="btn btn-outline-success mx-3" value="下一頁">
+                    <?php
+                    if ($last_page) {
+                        ?>
+                        <p class="btn btn-outline-success mx-3">下一頁</p>
+                        <?php
+                    } else {
+                        ?>
+                        <input type="submit" class="btn btn-outline-success mx-3" value="下一頁">
+                        <?php
+                    }
+                    ?>
                 </form>
-                <form action="novel_list.php" method="GET">
+                <!-- <form action="novel_list.php" method="GET">
                     <?php
                     if (isset($_GET["list_type"])) {
                         ?>
@@ -232,9 +287,15 @@ session_start();
                     ?>
                     <input type="number" class="btn btn-outline-success mx-3 col-3" name="list_page"
                         value="<?= $page ?>">
-                </form>
+                </form> -->
+                <div class="align-self-center">
+                    Current page:
+                    <?= $page ?>
+                </div>
+
             </div>
         </div>
+
     </main>
 
     <footer class="margin">
