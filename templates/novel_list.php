@@ -236,6 +236,71 @@ session_start();
                     }
                     ?>
                 </form>
+                <?php
+                if (isset($_GET["list_type"]) && isset($page)) {
+                    if (isset($_GET["list_q"])) {
+                        $list_q = $_GET["list_q"];
+                    } else {
+                        $list_q = null;
+                    }
+                    $i_end = null;
+                    $i_start = $page - 4;
+                    if ($i_start < 1) {
+                        $i_start = 1;
+                        $i_end = 9;
+                    } else {
+                        $i_end = $page + 4;
+                    }
+                    if ($last_page) { //check whether $i_end is exist
+                        $i_end = $page;
+                    } else {
+                        $check_count = $i_end - $page;
+                        search_list($sql_link, $type, $length3, $list_q, ($check_count * 32), (($page) * 32), $user, $user);
+                        $i_end = $page + ceil($length3 / 32);
+                    }
+
+                    for ($i_start; $i_start <= $i_end; $i_start++) {
+                        ?>
+                        <form action="novel_list.php" method="GET">
+                            <?php
+                            if (isset($_GET["list_type"])) {
+                                ?>
+                                <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
+                                <?php
+                            }
+                            if (isset($_GET["list_q"])) {
+                                ?>
+                                <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
+                                <?php
+                            }
+                            if (isset($_GET["list_user"])) {
+                                ?>
+                                <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
+                                <?php
+                            }
+                            ?>
+                            <input type="hidden" name="list_page" value="<?= $i_start ?>">
+                            <?php
+                            if ($page == $i_start) {
+                                ?>
+                                <p class="btn btn-outline-light mx-3 bg-success">
+                                    <?php
+                                    echo ($page);
+                                    ?>
+                                </p>
+
+                                <?php
+                            } else {
+                                ?>
+                                <input type="submit" class="btn btn-outline-success mx-3" value="<?= $i_start ?>">
+                                <?php
+                            }
+                            ?>
+                        </form>
+                        <?php
+                    }
+                }
+                ?>
                 <form action="novel_list.php" method="GET">
                     <?php
                     if (isset($_GET["list_type"])) {

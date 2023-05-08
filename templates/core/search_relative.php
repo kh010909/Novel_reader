@@ -9,7 +9,7 @@ function search_list($sql_link, $type = NULL, &$length = 0, $target = null, $lim
     $sql = null;
     if (isset($target)) { //get data from novel table
         if ($type == "SEARCH") {
-            $sql = "SELECT DISTINCT novel.* FROM novel NATURAL JOIN tag WHERE (tag LIKE '%$target%' OR nName LIKE '%$target%' OR completed = '$target'";
+            $sql = "SELECT DISTINCT novel.* FROM novel NATURAL JOIN tag WHERE (tag LIKE '%$target%' OR nName LIKE '%$target%' OR completed = '$target' OR author LIKE '%$target%' ";
             if (isset($cur_user)) {
                 $sql .= " OR novel.nId IN (
                     SELECT b.nId FROM bookrecord b, keep k WHERE b.bId = k.bId AND collectId IN (
