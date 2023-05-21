@@ -1,7 +1,7 @@
 <?php
 include("./core/config.php");
 session_start();
-$sql = "SELECT n.*,t.tag FROM novel n NATURAL JOIN tag AS t GROUP BY n.nId ORDER BY nTime DESC LIMIT 8";
+$sql = "SELECT n.*,t.tag FROM novel n LEFT OUTER JOIN tag AS t ON n.nId = t.nId GROUP BY n.nId ORDER BY nTime DESC LIMIT 8";
 $newest_rows = get_row($sql, $newcount, $sql_link);
 $sql = "SELECT n.*,t.tag FROM novel n NATURAL JOIN tag AS t GROUP BY n.nId ORDER BY nLike DESC LIMIT 7";
 $popularity_rows = get_row($sql, $popularcount, $sql_link);
@@ -60,13 +60,13 @@ for ($i = 0; $i < $completecount; $i++) {
     </header>
     <main class="container">
         <!-- 塊狀1 全小方格-->
-        <div class="row justify-content-md-center d-none d-lg-block margin">
+        <div class="row justify-content-md-center margin">
             <div class="row">
                 <div class="border-bottom pb-2 mb-1" id="block1">
                     <a class="h1" href="./novel_list.php?list_type=TIME" title="搜尋 最新小說 ">最新小說</a>
                 </div>
                 <!-- 單排格式 -->
-                <div class="d-flex flex-row pt-3 pb-1">
+                <div class="flex-row pt-3 pb-1 d-none d-lg-flex">
                     <?php for ($i = 0; $i < 4; $i++) { ?>
                         <div class="p-2 flex-row d-flex col-3">
                             <div class="col-6 col me-2">
@@ -76,34 +76,44 @@ for ($i = 0; $i < $completecount; $i++) {
                             </div>
 
                             <div class="py-2">
-                                <p class="p-1 h-25">
+                                <p class="p-1 h-50 d-block d-xl-none">
                                     <?= $newest_rows[$i]['nName'] ?>
                                 </p>
-                                <p class="py-3 px-1 h-50">
+                                <p class="py-3 px-1 d-block d-xl-none">
                                     <?= $newest_rows[$i]['author'] ?>
                                 </p>
-                                <div class="btn-group h-50">
-                                    <form action="./novel_list.php" method="GET">
-                                        <input type="hidden" name="list_type" value="COMPLETED">
-                                        <input type="hidden" name="list_q" value="<?= $newest_rows[$i]['completed'] ?>">
-                                        <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                            <?= $newest_rows[$i]['completed'] ?>
-                                        </button>
-                                    </form>
-                                    <form action="./novel_list.php" method="GET">
-                                        <input type="hidden" name="list_type" value="TAG">
-                                        <input type="hidden" name="list_q" value="<?= $newest_rows[$i]["tag"] ?>">
-                                        <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                            <?= $newest_rows[$i]["strip_tag"] ?>
-                                        </button>
-                                    </form>
+                                <p class="p-1 h-25 d-xl-block d-none">
+                                    <?= $newest_rows[$i]['nName'] ?>
+                                </p>
+                                <p class="py-3 px-1 h-50 d-xl-block d-none">
+                                    <?= $newest_rows[$i]['author'] ?>
+                                </p>
+                                <div class="btn-group">
+                                    <div class="d-xl-flex d-none">
+                                        <form action="./novel_list.php" method="GET">
+                                            <input type="hidden" name="list_type" value="COMPLETED">
+                                            <input type="hidden" name="list_q" value="<?= $newest_rows[$i]['completed'] ?>">
+                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                <?= $newest_rows[$i]['completed'] ?>
+                                            </button>
+                                        </form>
+                                        <?php if ($newest_rows[$i]["tag"] != NULL) { ?>
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="TAG">
+                                                <input type="hidden" name="list_q" value="<?= $newest_rows[$i]["tag"] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $newest_rows[$i]["strip_tag"] ?>
+                                                </button>
+                                            </form>
+                                        <?php } ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     <?php } ?>
                 </div>
                 <!-- 單排格式 -->
-                <div class="d-flex flex-row pt-3 pb-1">
+                <div class="flex-row pt-3 pb-1 d-none d-lg-flex">
                     <?php for ($i = 4; $i < 8; $i++) { ?>
                         <div class="p-2 flex-row d-flex col-3">
                             <div class="col-6 me-2">
@@ -112,76 +122,120 @@ for ($i = 0; $i < $completecount; $i++) {
                                 </a>
                             </div>
                             <div class="py-2 flex-column d-flex">
-                                <p class="p-1 h-25">
+                                <p class="p-1 h-50 d-block d-xl-none">
                                     <?= $newest_rows[$i]['nName'] ?>
                                 </p>
-                                <p class="py-3 px-1 h-50">
+                                <p class="py-3 px-1 d-block d-xl-none">
                                     <?= $newest_rows[$i]['author'] ?>
                                 </p>
-                                <div class="btn-group float-end h-25">
-                                    <form action="./novel_list.php" method="GET">
-                                        <input type="hidden" name="list_type" value="COMPLETED">
-                                        <input type="hidden" name="list_q" value="<?= $newest_rows[$i]['completed'] ?>">
-                                        <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                            <?= $newest_rows[$i]['completed'] ?>
-                                        </button>
-                                    </form>
-                                    <form action="./novel_list.php" method="GET">
-                                        <input type="hidden" name="list_type" value="TAG">
-                                        <input type="hidden" name="list_q" value="<?= $newest_rows[$i]["tag"] ?>">
-                                        <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                            <?= $newest_rows[$i]["strip_tag"] ?>
-                                        </button>
-                                    </form>
+                                <p class="p-1 h-25 d-xl-block d-none">
+                                    <?= $newest_rows[$i]['nName'] ?>
+                                </p>
+                                <p class="py-3 px-1 h-50 d-xl-block d-none">
+                                    <?= $newest_rows[$i]['author'] ?>
+                                </p>
+                                <div class="btn-group float-end">
+                                    <div class="d-xl-flex d-none">
+                                        <form action="./novel_list.php" method="GET">
+                                            <input type="hidden" name="list_type" value="COMPLETED">
+                                            <input type="hidden" name="list_q" value="<?= $newest_rows[$i]['completed'] ?>">
+                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                <?= $newest_rows[$i]['completed'] ?>
+                                            </button>
+                                        </form>
+                                        <form action="./novel_list.php" method="GET">
+                                            <input type="hidden" name="list_type" value="TAG">
+                                            <input type="hidden" name="list_q" value="<?= $newest_rows[$i]["tag"] ?>">
+                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                <?= $newest_rows[$i]["strip_tag"] ?>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     <?php } ?>
                 </div>
+
+                <!-- $i:有幾行 $j:一行幾本小說 -->
+                <?php for ($i = 0; $i < 4; $i++) { ?>
+                    <div class="flex-row pt-3 pb-1 d-flex d-lg-none">
+                        <?php
+                        for ($j = 0; $j < 2; $j++) {
+                            //offset:i * 一行幾本小說 + j
+                            $offset = $i * 2 + $j; ?>
+                            <div class="p-2 flex-row d-flex col-6">
+                                <div class="me-2">
+                                    <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$offset]['nId'] ?>" title="<?= $newest_rows[$i]['nName'] ?>">
+                                        <img src="../static/images/novel/<?= $newest_rows[$offset]['nImg'] ?>" style="height:300px">
+                                    </a>
+                                    <div class="py-2">
+                                        <p class="p-1 d-block d-xl-none">
+                                            <?= $newest_rows[$offset]['nName'] ?>
+                                        </p>
+                                        <p class="py-3 px-1 d-block d-xl-none">
+                                            <?= $newest_rows[$offset]['author'] ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+
             </div>
         </div>
         <!-- 塊狀2 大方格-->
-        <div class="row justify-content-md-center d-none d-lg-block margin">
+        <div class="row justify-content-md-center d-block margin">
             <div class="row">
                 <div class="border-bottom pb-2 mb-1" id="block2">
                     <a class="h1" href="./novel_list.php?list_type=LIKE" title="搜尋 最新小說">熱門小說</a>
                 </div>
                 <!-- 單位格式 (大)-->
                 <?php $i = 0; ?>
-                <div class="py-3 pl-3 pr-0 col-3 pt-4 pb-1">
+                <div class="py-3 pl-3 pr-0 col-3 pt-4 pb-1 d-none d-lg-block">
                     <div>
                         <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?>" title="<?= $popularity_rows[$i]['nName'] ?>">
                             <img src="../static/images/novel/<?= $popularity_rows[$i]['nImg'] ?>">
                         </a>
                     </div>
                     <div class="py-2 flex-column d-flex">
-                        <p class="p-1 h-0">
+                        <p class="p-1 h-50 d-block d-xl-none">
                             <?= $popularity_rows[$i]['nName'] ?>
                         </p>
-                        <p class="py-3 px-1 h-50">
+                        <p class="py-3 px-1 d-block d-xl-none">
                             <?= $popularity_rows[$i]['author'] ?>
                         </p>
-                        <div class="btn-group h-25">
-                            <form action="./novel_list.php" method="GET">
-                                <input type="hidden" name="list_type" value="COMPLETED">
-                                <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]['completed'] ?>">
-                                <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                    <?= $popularity_rows[$i]['completed'] ?>
-                                </button>
-                            </form>
-                            <form action="./novel_list.php" method="GET">
-                                <input type="hidden" name="list_type" value="TAG">
-                                <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
-                                <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                    <?= $popularity_rows[$i]["strip_tag"] ?>
-                                </button>
-                            </form>
+                        <p class="p-1 h-25 d-xl-block d-none">
+                            <?= $popularity_rows[$i]['nName'] ?>
+                        </p>
+                        <p class="py-3 px-1 h-50 d-xl-block d-none">
+                            <?= $popularity_rows[$i]['author'] ?>
+                        </p>
+                        <div class="btn-group">
+                            <div class="d-xl-flex d-none">
+                                <form action="./novel_list.php" method="GET">
+                                    <input type="hidden" name="list_type" value="COMPLETED">
+                                    <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]['completed'] ?>">
+                                    <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                        <?= $popularity_rows[$i]['completed'] ?>
+                                    </button>
+                                </form>
+                                <form action="./novel_list.php" method="GET">
+                                    <input type="hidden" name="list_type" value="TAG">
+                                    <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
+                                    <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                        <?= $popularity_rows[$i]["strip_tag"] ?>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <!-- 單排格式 -->
-                    <div class="d-flex flex-row pt-3 pb-1">
+                    <div class="d-none d-lg-flex flex-row pt-3 pb-1">
                         <!-- 單位格式 (塊狀2 小)-->
                         <?php for ($i = 1; $i < 4; $i++) { ?>
                             <!-- 單位格式 (塊狀2 小)-->
@@ -192,34 +246,42 @@ for ($i = 0; $i < $completecount; $i++) {
                                     </a>
                                 </div>
                                 <div class="py-2 flex-column d-flex">
-                                    <p class="p-1 h-25">
+                                    <p class="p-1 h-50 d-block d-xl-none">
                                         <?= $popularity_rows[$i]['nName'] ?>
                                     </p>
-                                    <p class="py-3 px-1 h-50">
+                                    <p class="py-3 px-1 d-block d-xl-none">
+                                        <?= $popularity_rows[$i]['author'] ?>
+                                    </p>
+                                    <p class="p-1 h-25 d-xl-block d-none">
+                                        <?= $popularity_rows[$i]['nName'] ?>
+                                    </p>
+                                    <p class="py-3 px-1 h-50 d-xl-block d-none">
                                         <?= $popularity_rows[$i]['author'] ?>
                                     </p>
                                     <div class="btn-group">
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="COMPLETED">
-                                            <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]['completed'] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $popularity_rows[$i]['completed'] ?>
-                                            </button>
-                                        </form>
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="TAG">
-                                            <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $popularity_rows[$i]["strip_tag"] ?>
-                                            </button>
-                                        </form>
+                                        <div class="d-xl-flex d-none">
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="COMPLETED">
+                                                <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]['completed'] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $popularity_rows[$i]['completed'] ?>
+                                                </button>
+                                            </form>
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="TAG">
+                                                <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $popularity_rows[$i]["strip_tag"] ?>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         <?php } ?>
                     </div>
                     <!-- 單排格式 -->
-                    <div class="d-flex flex-row pt-3 pb-1">
+                    <div class="d-none d-lg-flex flex-row pt-3 pb-1">
                         <!-- 單位格式 (塊狀2 小)-->
                         <?php for ($i = 4; $i < 7; $i++) { ?>
                             <!-- 單位格式 (塊狀2 小)-->
@@ -230,83 +292,122 @@ for ($i = 0; $i < $completecount; $i++) {
                                     </a>
                                 </div>
                                 <div class="py-2 flex-column d-flex ">
-                                    <p class="p-1 h-25">
+                                    <p class="p-1 h-50 d-block d-xl-none">
                                         <?= $popularity_rows[$i]['nName'] ?>
                                     </p>
-                                    <p class="py-3 px-1 h-50">
+                                    <p class="py-3 px-1 d-block d-xl-none">
+                                        <?= $popularity_rows[$i]['author'] ?>
+                                    </p>
+                                    <p class="p-1 h-25 d-xl-block d-none">
+                                        <?= $popularity_rows[$i]['nName'] ?>
+                                    </p>
+                                    <p class="py-3 px-1 h-50 d-xl-block d-none">
                                         <?= $popularity_rows[$i]['author'] ?>
                                     </p>
                                     <div class="btn-group">
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="COMPLETED">
-                                            <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]['completed'] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $popularity_rows[$i]['completed'] ?>
-                                            </button>
-                                        </form>
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="TAG">
-                                            <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $popularity_rows[$i]["strip_tag"] ?>
-                                            </button>
-                                        </form>
+                                        <div class="d-xl-flex d-none">
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="COMPLETED">
+                                                <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]['completed'] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $popularity_rows[$i]['completed'] ?>
+                                                </button>
+                                            </form>
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="TAG">
+                                                <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $popularity_rows[$i]["strip_tag"] ?>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         <?php } ?>
                     </div>
                 </div>
+
+                <?php for ($i = 0; $i < 3; $i++) { ?>
+                    <div class="flex-row pt-3 pb-1 d-flex d-lg-none">
+                        <?php
+                        for ($j = 0; $j < 2; $j++) {
+                            $offset = $i * 2 + $j; ?>
+                            <div class="p-2 flex-row d-flex col-6">
+                                <div class="me-2">
+                                    <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$offset]['nId'] ?>" title="<?= $popularity_rows[$i]['nName'] ?>">
+                                        <img src="../static/images/novel/<?= $popularity_rows[$offset]['nImg'] ?>" style="height:300px">
+                                    </a>
+                                    <div class="py-2">
+                                        <p class="p-1 h-50 d-block d-xl-none">
+                                            <?= $popularity_rows[$offset]['nName'] ?>
+                                        </p>
+                                        <p class="py-3 px-1 d-block d-xl-none">
+                                            <?= $popularity_rows[$offset]['author'] ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
             </div>
         </div>
 
         <!-- 塊狀1 全小方格-->
-        <div class="row justify-content-md-center d-none d-lg-block margin mb-5">
+        <div class="row justify-content-md-center d-block margin mb-5">
             <div class="row">
                 <div class="border-bottom pb-2 mb-1" id="block3">
                     <a class="h1" href="./novel_list.php?list_type=COMPLETED&list_q=完結" title="搜尋 完結小說">完結小說</a>
                 </div>
                 <!-- 單排格式 -->
-                <div class="d-flex flex-row pt-3 pb-1">
+                <div class="flex-row pt-3 pb-1 d-none d-lg-flex">
                     <?php
                     if ($completecount < 4) {
                         for ($i = 0; $i < $completecount; $i++) { ?>
-                            <div class="p-2 flex-row d-flex col-3">
+                            <div class="p-2 flex-row d-flex col-6 col-lg-3">
                                 <div class="col-6 col me-2">
                                     <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>" title="<?= $complete_rows[$i]['nName'] ?>">
                                         <img src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
                                     </a>
                                 </div>
-
                                 <div class="py-2">
-                                    <p class="p-1 h-25">
+                                    <p class="p-1 h-50 d-block d-xl-none">
                                         <?= $complete_rows[$i]['nName'] ?>
                                     </p>
-                                    <p class="py-3 px-1 h-50">
+                                    <p class="py-3 px-1 d-block d-xl-none">
+                                        <?= $complete_rows[$i]['author'] ?>
+                                    </p>
+                                    <p class="p-1 h-25 d-xl-block d-none">
+                                        <?= $complete_rows[$i]['nName'] ?>
+                                    </p>
+                                    <p class="py-3 px-1 h-50 d-xl-block d-none">
                                         <?= $complete_rows[$i]['author'] ?>
                                     </p>
                                     <div class="btn-group h-50">
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="COMPLETED">
-                                            <input type="hidden" name="list_q" value="<?= $complete_rows[$i]['completed'] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $complete_rows[$i]['completed'] ?>
-                                            </button>
-                                        </form>
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="TAG">
-                                            <input type="hidden" name="list_q" value="<?= $complete_rows[$i]["tag"] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $complete_rows[$i]["strip_tag"] ?>
-                                            </button>
-                                        </form>
+                                        <div class="d-xl-flex d-none">
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="COMPLETED">
+                                                <input type="hidden" name="list_q" value="<?= $complete_rows[$i]['completed'] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $complete_rows[$i]['completed'] ?>
+                                                </button>
+                                            </form>
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="TAG">
+                                                <input type="hidden" name="list_q" value="<?= $complete_rows[$i]["tag"] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $complete_rows[$i]["strip_tag"] ?>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         <?php }
                     } else {
                         for ($i = 0; $i < 4; $i++) { ?>
-                            <div class="p-2 flex-row d-flex col-3 pt-3 pb-1">
+                            <div class="p-2 flex-row d-flex col-6 col-lg-3 pt-3 pb-1">
                                 <div class="col-6 col me-2">
                                     <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>" title="<?= $complete_rows[$i]['nName'] ?>">
                                         <img src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
@@ -314,53 +415,89 @@ for ($i = 0; $i < $completecount; $i++) {
                                 </div>
 
                                 <div class="py-2">
-                                    <p class="p-1 h-25">
+                                    <p class="p-1 h-50 d-block d-xl-none">
                                         <?= $complete_rows[$i]['nName'] ?>
                                     </p>
-                                    <p class="py-3 px-1 h-50">
+                                    <p class="py-3 px-1 d-block d-xl-none">
+                                        <?= $complete_rows[$i]['author'] ?>
+                                    </p>
+                                    <p class="p-1 h-25 d-xl-block d-none">
+                                        <?= $complete_rows[$i]['nName'] ?>
+                                    </p>
+                                    <p class="py-3 px-1 h-50 d-xl-block d-none">
                                         <?= $complete_rows[$i]['author'] ?>
                                     </p>
                                     <div class="btn-group h-50">
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="COMPLETED">
-                                            <input type="hidden" name="list_q" value="<?= $complete_rows[$i]['completed'] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $complete_rows[$i]['completed'] ?>
-                                            </button>
-                                        </form>
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="TAG">
-                                            <input type="hidden" name="list_q" value="<?= $complete_rows[$i]["tag"] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $complete_rows[$i]["strip_tag"] ?>
-                                            </button>
-                                        </form>
+                                        <div class="d-xl-flex d-none">
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="COMPLETED">
+                                                <input type="hidden" name="list_q" value="<?= $complete_rows[$i]['completed'] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $complete_rows[$i]['completed'] ?>
+                                                </button>
+                                            </form>
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="TAG">
+                                                <input type="hidden" name="list_q" value="<?= $complete_rows[$i]["tag"] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $complete_rows[$i]["strip_tag"] ?>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                     <?php }
                     } ?>
                 </div>
+                <?php if ($completecount >= 4) {
+                    for ($i = 0; $i < 2; $i++) { ?>
+                        <div class="flex-row pt-3 pb-1 d-flex d-lg-none">
+                            <?php
+                            for ($j = 0; $j < 2; $j++) {
+                                $offset = $i * 2 + $j; ?>
+                                <div class="p-2 flex-row d-flex col-6">
+                                    <div class="me-2">
+                                        <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$offset]['nId'] ?>" title="<?= $complete_rows[$offset]['nName'] ?>">
+                                            <img src="../static/images/novel/<?= $complete_rows[$offset]['nImg'] ?>" style="height:300px">
+                                        </a>
+                                        <div class="py-2">
+                                            <p class="p-1 h-50 d-block d-xl-none">
+                                                <?= $complete_rows[$offset]['nName'] ?>
+                                            </p>
+                                            <p class="py-3 px-1 d-block d-xl-none">
+                                                <?= $complete_rows[$offset]['author'] ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    <?php }
+                } else if ($completecount >= 2) { ?>
+                    <div class="flex-row pt-3 pb-1 d-flex d-lg-none">
+                        <?php
+                        for ($i = 0; $i < 2; $i++) { ?>
+                            <div class="p-2 flex-row d-flex col-6">
+                                <div class="me-2">
+                                    <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>" title="<?= $complete_rows[$i]['nName'] ?>">
+                                        <img src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
+                                    </a>
+                                    <div class="py-2">
+                                        <p class="p-1 h-50 d-block d-xl-none">
+                                            <?= $complete_rows[$i]['nName'] ?>
+                                        </p>
+                                        <p class="py-3 px-1 d-block d-xl-none">
+                                            <?= $complete_rows[$i]['author'] ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
             </div>
         </div>
-        <div class="container d-lg-none margin">
-            <div class="row">
-                <ul class="list-group col">
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item list-group-item-primary">This is a primary list group item</li>
-                    <li class="list-group-item list-group-item-secondary">This is a secondary list group item</li>
-                    <li class="list-group-item list-group-item-success">This is a success list group item</li>
-                </ul>
-                <ul class="list-group col">
-                    <li class="list-group-item list-group-item-danger">This is a danger list group item</li>
-                    <li class="list-group-item list-group-item-warning">This is a warning list group item</li>
-                    <li class="list-group-item list-group-item-info">This is a info list group item</li>
-                    <li class="list-group-item list-group-item-light">This is a light list group item</li>
-                </ul>
-            </div>
-        </div>
-
-
     </main>
 
     <footer>

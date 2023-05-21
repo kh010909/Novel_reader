@@ -65,15 +65,19 @@ if (isset($_SESSION["user"])) {
             $k = 0; ?>
             <div class="row justify-content-md-center d-none d-lg-block margin">
                 <div class="row">
-                    <div class="border-bottom pb-2 mb-1">
+                    <div class="d-flex justify-content-start border-bottom pb-2 mb-1">
                         <a class="h1" href="./novel_list.php?list_type=COLLECTION&list_q=<?= $collection_file_rows[$i]['collectName'] ?>" title="To <?= $collection_file_rows[$i]['collectName'] ?>"><?= $collection_file_rows[$i]['collectName'] ?></a>
+                        <form action="./collection/collection_delete_handle.php" method="post" class="p-2">
+                            <input type="hidden" name="collectId" value="<?= $collection_file_rows[$i]['collectId'] ?>">
+                            <button type="submit" class="dropdown-item pt-3"> <i class="bi bi-trash"></i> </button>
+                        </form>
                     </div>
                     <div class="d-flex flex-row pt-3 mb-3">
                         <?php
                         for ($j = 0; $j < $novel_count; $j++) {
                             if ($novel_rows[$j]['collectId'] == $collection_file_rows[$i]['collectId']) { ?>
                                 <div class="p-2 flex-row d-flex col-3">
-                                    <div class=" col-6 me-2">
+                                    <div class="col-6 me-2">
                                         <a href="./novel/novel_handle.php?nId=<?= $novel_rows[$j]['nId'] ?>">
                                             <img src="../static/images/novel/<?= $novel_rows[$j]['nImg'] ?>">
                                         </a>
@@ -93,7 +97,14 @@ if (isset($_SESSION["user"])) {
                                                     <?= $novel_rows[$j]['completed'] ?>
                                                 </button>
                                             </form>
+                                            <form action="./collection/collection_add_handle.php" method="post" class="p-2">
+                                                <input type="hidden" name="nId" value="<?= $novel_rows[$j]['nId'] ?>">
+                                                <input type="hidden" name="collectId" value="<?= $collection_file_rows[$i]['collectId'] ?>">
+                                                <input type="hidden" name="inside" value="1">
+                                                <button type="submit" class="dropdown-item"> <i class="bi bi-trash"></i> </button>
+                                            </form>
                                         </div>
+
                                     </div>
                                 </div>
                             <?php $k++;

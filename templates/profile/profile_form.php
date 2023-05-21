@@ -40,7 +40,7 @@ if ($return_msg != "") {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 shadow">
             <div class="modal-header p-5 pb-4 border-bottom-0">
-                <h1 class="fw-bold mb-0 fs-2" id="modal-profile-label">Profile</h1>
+                <h1 class="fw-bold mb-0 fs-2" id="modal-profile-label">個人檔案</h1>
                 <button @click="isEdit=!isEdit" class="btn btn-sm rounded-3 btn-secondary ms-3 mt-3 border-bottom-0">
                     <i class="bi bi-pencil-square"></i>
                 </button>
@@ -48,7 +48,7 @@ if ($return_msg != "") {
             </div>
 
             <div v-show="!isEdit" class="modal-body p-5 pt-0"> <!-- read -->
-                <label for="profile-name" class="form-label fs-5">User Name</label>
+                <label for="profile-name" class="form-label fs-5">使用者名稱</label>
                 <div class="input-group mb-4">
                     <span class="me-2">
                         <i class="bi bi-person-fill"></i>
@@ -56,23 +56,22 @@ if ($return_msg != "") {
                     <h3><?= $_SESSION["profile"]["name"] ?></h3>
                 </div>
 
-                <label for="profile-email" class="form-label fs-5">Email</label>
+                <label for="profile-email" class="form-label fs-5">電子信箱</label>
                 <div class="input-group mb-4">
                     <span class="me-2">
                         <i class="bi bi-envelope-fill"></i>
                     </span>
                     <h3><?= $_SESSION["profile"]["email"] ?></h3>
                 </div>
-
-                <label for="profile-permission" class="form-label fs-5">Rank</label>
+                <label for="profile-permission" class="form-label fs-5">使用者權限</label>
                 <div class="input-group mb-4">
                     <span class="me-2">
-                        <i class="bi bi-person-vcard-fill"></i>
+                        <i class="bi bi-person-fill-check"></i>
                     </span>
                     <h3><?= $_SESSION["profile"]["permission"] ?></h3>
                 </div>
 
-                <label for="profile-email" class="form-label fs-5">Create At</label>
+                <label for="profile-email" class="form-label fs-5">創立時間</label>
                 <div class="input-group mb-4">
                     <span class="me-2">
                         <i class="bi bi-calendar-plus-fill"></i>
@@ -83,7 +82,7 @@ if ($return_msg != "") {
             <div v-show="isEdit" class="container modal-body p-5 pt-0"> <!-- edit -->
                 <form action="./profile/profile_form_handle.php" method="POST">
 
-                    <label for="edit-profile-name" class="form-label fs-5">User Name</label>
+                    <label for="edit-profile-name" class="form-label fs-5">使用者名稱</label>
                     <div class="input-group mb-3">
                         <input type="text" name="name" class="form-control shadow-none" id="edit-profile-name" placeholder="<?= $_SESSION["profile"]["name"] ?>" value="<?= $_SESSION["profile"]["name"] ?>" required>
                         <span class="input-group-text">
@@ -92,7 +91,7 @@ if ($return_msg != "") {
                     </div>
 
 
-                    <label for="edit-profile-email" class="form-label fs-5">Email Address</label>
+                    <label for="edit-profile-email" class="form-label fs-5">電子信箱</label>
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control shadow-none" id="edit-profile-email" placeholder="<?= $_SESSION["profile"]["email"] ?>" value="<?= $_SESSION["profile"]["email"] ?>" required>
                         <span class="input-group-text">
@@ -101,7 +100,7 @@ if ($return_msg != "") {
                     </div>
 
                     <div class="row mb-3">
-                        <label for="edit-profile-password" class="form-label fs-5">Password
+                        <label for="edit-profile-password" class="form-label fs-5">密碼
                             <button @click.prevent="passwordEdit=!passwordEdit" class="btn btn-sm rounded-3 btn-secondary border-bottom-0 ms-2">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
@@ -114,8 +113,7 @@ if ($return_msg != "") {
                                     <i class="bi bi-shield-lock"></i>
                                 </span>
                             </div>
-                            <label for="inputPassword" class="col-lg-4 col-form-label fs-5">New
-                                Password</label>
+                            <label for="inputPassword" class="col-lg-4 col-form-label fs-5">新密碼</label>
                             <div class="input-group mb-3">
                                 <input type="password" class="check-password form-control shadow-none" id="password-new" name="password-new" minlength="8" autocomplete="off">
                                 <span class="input-group-text rounded-end">
@@ -145,7 +143,7 @@ if ($return_msg != "") {
                                 </div>
                             </div>
                             <label for="inputPassword" class="col-lg-4 col-form-label fs-5">
-                                Enter Again
+                                新密碼再輸入
                             </label>
                             <div class="input-group mb-3">
                                 <input type="password" class="check-password-confirm form-control shadow-none" id="password-confirm" name="password-confirm" minlength="8" autocomplete="off">
@@ -158,8 +156,7 @@ if ($return_msg != "") {
                             </div>
                         </div>
                     </div>
-
-                    <label for="edit-profile-permission" class="form-label fs-5">Rank</label>
+                    <label for="edit-profile-permission" class="form-label fs-5">使用者權限</label>
                     <div class="input-group mb-3">
                         <span class="me-2">
                             <i class="bi bi-person-vcard-fill"></i>
@@ -167,7 +164,7 @@ if ($return_msg != "") {
                         <h3><?= $_SESSION["profile"]["permission"] ?></h3>
                     </div>
 
-                    <label for="edit-profile-email" class="form-label fs-5">Create At</label>
+                    <label for="edit-profile-create_at" class="form-label fs-5">創立時間</label>
                     <div class="input-group mb-3">
                         <span class="me-2">
                             <i class="bi bi-calendar-plus-fill"></i>

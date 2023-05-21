@@ -7,6 +7,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap");
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
 html,
 body,
 div,
@@ -559,6 +562,18 @@ div form input.crawler-input {
   border-bottom: 1px solid black;
   box-shadow: none;
   padding: 0;
+}
+
+.cwTeXKai {
+  font-family: "cwTeXKai", serif;
+}
+
+.cwTeXYen {
+  font-family: "cwTeXYen", sans-serif;
+}
+
+.Noto-Sans-TC {
+  font-family: "Noto Sans TC", sans-serif;
 }
 
 .croppie-container {

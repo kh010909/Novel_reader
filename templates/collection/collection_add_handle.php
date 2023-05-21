@@ -25,7 +25,12 @@ if (isset($_POST['nId'])) {
             $temp = $sql_link->query($sql);
         }
     }
-?>
+    if (isset($_POST['inside'])) { ?>
+        <script>
+            window.location.href = '../collection.php';
+        </script>
+    <?php }
+    ?>
     <script>
         window.location.href = '../novel/novel_handle.php?nId=<?= $id ?>';
     </script>

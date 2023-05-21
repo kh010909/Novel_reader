@@ -1,8 +1,14 @@
-const modal_profile = Vue.createApp({
+const app = Vue.createApp({
     data() {
         return {
             isEdit: false,
-            passwordEdit: false
-        }
+            passwordEdit: false,
+        };
     }
-}).mount('#modal-profile');
+});
+
+app.mount('#modal-profile');
+
+
+
+

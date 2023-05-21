@@ -20,6 +20,9 @@ $collection_rows = $_SESSION['collection'];
 $collectioncount = $_SESSION['collectioncount'];
 $collection_novel_rows = $_SESSION['collection_novel'];
 $collectionNovelCount = $_SESSION['collection_novel_count'];
+//reset article background and text color
+unset($_SESSION['background']);
+setcookie('background', null, -1);
 ?>
 
 <!DOCTYPE html>
@@ -226,4 +229,5 @@ unset($_SESSION['commentcount']);
 unset($_SESSION['tagcount']);
 unset($_SESSION['articlecount']);
 unset($_SESSION['collection']);
-unset($_SESSION['collectioncount']); ?>
+unset($_SESSION['collectioncount']);
+?>
