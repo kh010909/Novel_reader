@@ -83,7 +83,7 @@ if (isset($_SESSION["user"])) {
                                         </a>
                                     </div>
                                     <div class="py-2">
-                                        <p class="p-1 h-25">
+                                        <p class="fs-6 fw-bold p-1 h-25">
                                             <?= $novel_rows[$j]['nName'] ?>
                                         </p>
                                         <p class="py-3 px-1 h-50">
