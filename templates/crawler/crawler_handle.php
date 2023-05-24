@@ -40,7 +40,7 @@ function callPythonScriptToDB($wb_name, $pageURL, $addBgm)
     $exitCode = null;
 
     exec($command, $output, $exitCode);
-    $outputString = implode('. ', $output);
+    $outputString = implode("\n", $output);
 
     // 返回Python脚本的输出
     return array($outputString, $exitCode);
@@ -65,7 +65,7 @@ function callPythonScriptToDocx($wb_name, $pageURL)
         $docxFilePath = end($output); // Python 脚本返回的是 DOCX 文件的路径
     } else if (!empty($output) && strpos(end($output), "static\\novel") === false) {
         array_push($output, "Download Failed.");
-        $outputString = implode('. ', $output);
+        $outputString = implode("\n", $output);
         return array($outputString, $exitCode);
     } else {
         // 处理数组为空的情况
@@ -92,11 +92,11 @@ function callPythonScriptToDocx($wb_name, $pageURL)
             array_pop($output); // 移除最后一个元素
         }
         array_push($output, "Download Successfully.");
-        $outputString = implode('. ', $output);
+        $outputString = implode("\n", $output);
         return array($outputString, $exitCode);
     } else {
         array_push($output, "DOCX file doesn\'t exist.");
-        $outputString = implode('. ', $output);
+        $outputString = implode("\n", $output);
         return array($outputString, $exitCode);
     }
 }

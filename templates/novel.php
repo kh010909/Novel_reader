@@ -183,18 +183,20 @@ setcookie('background', null, -1);
             開始閱讀
             <div>
                 <?php for ($i = 0; $i < $articlecount; $i++) {
+                    $j = $i + 1;
                     if ($record_row != NULL) {
                         if ($i < $record_row[0]['currCh']) { ?>
-                            <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>" class="btn btn-outline-secondary m-1 rounded-pill">
+
+                            <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $j ?>" class="btn btn-outline-secondary m-1 rounded-pill">
                                 <?= $article_rows[$i]['aName'] ?>
                             </a>
                         <?php } else { ?>
-                            <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>" class="btn btn-secondary m-1 rounded-pill">
+                            <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $j ?>" class="btn btn-secondary m-1 rounded-pill">
                                 <?= $article_rows[$i]['aName'] ?>
                             </a>
                         <?php }
                     } else { ?>
-                        <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $i ?>" class="btn btn-secondary m-1 rounded-pill">
+                        <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $j ?>" class="btn btn-secondary m-1 rounded-pill">
                             <?= $article_rows[$i]['aName'] ?>
                         </a>
                     <?php } ?>

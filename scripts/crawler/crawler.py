@@ -32,7 +32,8 @@ def get_czbooks_novel(url):
     # Create a request object, then use the object to open the URL, and enter the request headers information
     data = requests.get(url)
     if data.status_code!=200:
-        print("Fail to connect to the website you entered. Please make sure the url you input")
+        print("Fail to connect to the website you entered.")
+        print("Please make sure the url you input.")
         exit(1)
     # Parse the source code and get the title of each article
     root = bs4.BeautifulSoup(data.text, "html.parser")
@@ -107,7 +108,8 @@ def get_qidian_novel(url):
     # Create a request object, then use the object to open the URL, and enter the request headers information
     data = requests.get(url)
     if data.status_code!=200:
-        print("Fail to connect to the website you entered. Please make sure the url you input")
+        print("Fail to connect to the website you entered.")
+        print("Please make sure the url you input.")
         exit(1)
     # Parse the source code and get the title of each article
     root = bs4.BeautifulSoup(data.text, "html.parser")
@@ -218,7 +220,8 @@ def get_jjwxc_novel(url):
     # Parse webpage and convert text encoding from gb18030 to utf-8
     data = requests.get(url) #get wb content
     if data.status_code!=200:
-        print("Fail to connect to the website you entered. Please make sure the url you input")
+        print("Fail to connect to the website you entered.")
+        print("Please make sure the url you input.")
         exit(1)
     data_transcoded = data.content.decode('gb18030', errors='replace').encode('utf-8').decode('utf-8')
     root=bs4.BeautifulSoup(data_transcoded, "html.parser")
@@ -468,6 +471,7 @@ def novelToDB(nName, author, description, completed, tags, nImg_link, nextLink):
 
 # Article: nId, aId, aName, aChapter, aContent, mId
 def articleToDB(aChapter, nId, aName, aContent, nextLink, addBgm):
+    
     if addBgm=="yes":
         aContent= bgm.add_music(aContent)
     with conn.cursor() as cursor:
@@ -523,7 +527,7 @@ def crawlerToDB(pageURL, wb_name, addBgm):
     
     nextURL = "0"
     if(wb_name == "czbooks"):
-        aChapter = 0
+        aChapter = 1
         while nextURL != "":
             aName, aContent, nextLink = get_czbooks_article(pageURL)
 
@@ -537,7 +541,8 @@ def crawlerToDB(pageURL, wb_name, addBgm):
         aChapter = 1
         while nextURL != "":
             aName, aContent, nextLink = get_qidian_article(pageURL)
-
+            aContent=aContent.replace("<p>", "<br/>")
+            aContent=aContent.replace("</p>", "")
             nextURL = articleToDB(aChapter, nId, aName, aContent, nextLink, addBgm)
             # 防止TypeError: can only concatenate str (not "NoneType") to str
             if nextURL is None:
@@ -707,7 +712,7 @@ else:
 # 返回结果
 print(result)
 
-
+# get_qidian_article("https://www.qidian.com/chapter/1034130287/751765931/")
 #測試:
 # result=crawlerToDocx("3694555", "jjwxc")
 # result=crawlerToDB("cp132ed", wb_name="czbooks", addBgm="no")
