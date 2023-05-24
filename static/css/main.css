@@ -576,6 +576,13 @@ div form input.crawler-input {
   font-family: "Noto Sans TC", sans-serif;
 }
 
+.skip {
+  max-height: 35px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .croppie-container {
   width: 100%;
   height: 100%;

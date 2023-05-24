@@ -83,7 +83,7 @@ function block_unit1($nID, $image_dir = '...', $book_name = '', $author = '', $d
             <p class="py-3 px-1">
                 <?= $author ?>
             </p>
-            <p class="p-1">
+            <p class="p-1 skip">
                 <?= $description ?>
             </p>
         </div>

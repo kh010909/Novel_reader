@@ -25,12 +25,9 @@ session_start();
     <!-- Vue -->
     <script src="https://unpkg.com/vue@next"></script>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     </script>
     <!-- Jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
@@ -106,16 +103,17 @@ session_start();
             $list_title = "No Content Currently";
         }
         ?>
-        <div class="container-fluid col-8 py-3 border-bottom">
+        <div class="container-fluid col-11 py-3 ">
+
+        </div>
+        <div class="container-fluid col-11">
             <h1>
                 <?= $list_title ?>
             </h1>
-        </div>
-        <div class="container-fluid col-8">
             <div class="d-none d-lg-block">
                 <?php
                 if (isset($result) && isset($length)) { //RENDER THE RESULT
-                
+
                     $name = array_column($result, 'nName');
                     $author = array_column($result, 'author');
                     $newchp = array_column($result, 'newestChapter');
@@ -185,11 +183,11 @@ session_start();
                         $target_get_string .= "&list_user=$_GET[list_user]";
                     }
                     $target_get_string .= "&list_page=$target_page";
-                    ?>
+        ?>
                     <script type="text/javascript">
                         window.location = "<?= $target_get_string ?>"
                     </script>
-                    <?php
+            <?php
                 }
             }
             ?>
@@ -198,7 +196,7 @@ session_start();
                     <?= $last_or_no ?>
                 </h1>
             </div>
-            <?php
+        <?php
         }
         ?>
         <div>
@@ -208,31 +206,31 @@ session_start();
                 <form action="novel_list.php" method="GET">
                     <?php
                     if (isset($_GET["list_type"])) {
-                        ?>
+                    ?>
                         <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
-                        <?php
+                    <?php
                     }
                     if (isset($_GET["list_q"])) {
-                        ?>
+                    ?>
                         <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
-                        <?php
+                    <?php
                     }
                     if (isset($_GET["list_user"])) {
-                        ?>
+                    ?>
                         <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
-                        <?php
+                    <?php
                     }
                     ?>
                     <input type="hidden" name="list_page" value="<?= $page - 1 ?>">
                     <?php
                     if ($page == 1) {
-                        ?>
+                    ?>
                         <p class="btn btn-outline-success mx-3">上一頁</p>
-                        <?php
+                    <?php
                     } else {
-                        ?>
+                    ?>
                         <input type="submit" class="btn btn-outline-success mx-3" value="上一頁">
-                        <?php
+                    <?php
                     }
                     ?>
                 </form>
@@ -260,82 +258,82 @@ session_start();
                     }
 
                     for ($i_start; $i_start <= $i_end; $i_start++) {
-                        ?>
+                ?>
                         <form action="novel_list.php" method="GET">
                             <?php
                             if (isset($_GET["list_type"])) {
-                                ?>
+                            ?>
                                 <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
-                                <?php
+                            <?php
                             }
                             if (isset($_GET["list_q"])) {
-                                ?>
+                            ?>
                                 <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
-                                <?php
+                            <?php
                             }
                             if (isset($_GET["list_user"])) {
-                                ?>
+                            ?>
                                 <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
-                                <?php
+                            <?php
                             }
                             ?>
                             <input type="hidden" name="list_page" value="<?= $i_start ?>">
                             <?php
                             if ($page == $i_start) {
-                                ?>
+                            ?>
                                 <p class="btn btn-outline-light mx-3 bg-success">
                                     <?php
                                     echo ($page);
                                     ?>
                                 </p>
 
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <input type="submit" class="btn btn-outline-success mx-3" value="<?= $i_start ?>">
-                                <?php
+                            <?php
                             }
                             ?>
                         </form>
-                        <?php
+                <?php
                     }
                 }
                 ?>
                 <form action="novel_list.php" method="GET">
                     <?php
                     if (isset($_GET["list_type"])) {
-                        ?>
+                    ?>
                         <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
-                        <?php
+                    <?php
                     }
                     if (isset($_GET["list_q"])) {
-                        ?>
+                    ?>
                         <input type="hidden" name="list_q" value="<?= $_GET["list_q"] ?>">
-                        <?php
+                    <?php
                     }
                     if (isset($_GET["list_user"])) {
-                        ?>
+                    ?>
                         <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
-                        <?php
+                    <?php
                     }
                     ?>
                     <input type="hidden" name="list_page" value="<?= $page + 1 ?>">
                     <?php
                     if ($last_page) {
-                        ?>
+                    ?>
                         <p class="btn btn-outline-success mx-3">下一頁</p>
-                        <?php
+                    <?php
                     } else {
-                        ?>
+                    ?>
                         <input type="submit" class="btn btn-outline-success mx-3" value="下一頁">
-                        <?php
+                    <?php
                     }
                     ?>
                 </form>
                 <!-- <form action="novel_list.php" method="GET">
                     <?php
                     if (isset($_GET["list_type"])) {
-                        ?>
+                    ?>
                         <input type="hidden" name="list_type" value="<?= $_GET["list_type"] ?>">
                         <?php
                     }
@@ -349,7 +347,7 @@ session_start();
                         <input type="hidden" name="list_user" value="<?= $_GET["list_user"] ?>">
                         <?php
                     }
-                    ?>
+                        ?>
                     <input type="number" class="btn btn-outline-success mx-3 col-3" name="list_page"
                         value="<?= $page ?>">
                 </form> -->
@@ -371,7 +369,7 @@ session_start();
 </html>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#modal-show-message').modal('show');
     });
 </script>

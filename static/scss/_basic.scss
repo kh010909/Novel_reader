@@ -82,3 +82,10 @@ div {
 .Noto-Sans-TC {
     font-family: "Noto Sans TC", sans-serif;
 }
+
+.skip {
+    max-height: 35px;
+    display: -webkit-box; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}

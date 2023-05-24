@@ -76,11 +76,9 @@ if (isset($_SESSION["user"])) {
                         <?php
                         for ($j = 0; $j < $novel_count; $j++) {
                             if ($novel_rows[$j]['collectId'] == $collection_file_rows[$i]['collectId']) { ?>
-                                <div class="p-2 flex-row d-flex col-3">
+                                <a class="p-2 flex-row d-flex col-3" href="./novel/novel_handle.php?nId=<?= $novel_rows[$j]['nId'] ?>">
                                     <div class="col-6 me-2">
-                                        <a href="./novel/novel_handle.php?nId=<?= $novel_rows[$j]['nId'] ?>">
-                                            <img src="../static/images/novel/<?= $novel_rows[$j]['nImg'] ?>">
-                                        </a>
+                                        <img src="../static/images/novel/<?= $novel_rows[$j]['nImg'] ?>">
                                     </div>
                                     <div class="py-2">
                                         <p class="fs-6 fw-bold p-1 h-25">
@@ -106,7 +104,8 @@ if (isset($_SESSION["user"])) {
                                         </div>
 
                                     </div>
-                                </div>
+                                </a>
+
                             <?php $k++;
                             }
                             if ($k >= 4) {
