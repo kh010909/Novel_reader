@@ -77,7 +77,7 @@ function block_unit1($nID, $image_dir = '...', $book_name = '', $author = '', $d
             <img src="<?= $image_dir ?>">
         </div>
         <div class="py-2 flex-column d-flex">
-            <p class="p-1">
+            <p class="p-1 fw-bold">
                 <?= $book_name ?>
             </p>
             <p class="py-3 px-1">
@@ -165,7 +165,7 @@ function block_row_small($nID, $image_dir = '...', $book_name = '', $author = ''
                     <a href="./novel/novel_handle.php?nId=<?= $nID[$i] ?>">
                         <li class="list-group-item">
 
-                            <?= $book_name[$i] ?> 作者:
+                            <div class="fw-bold"><?= $book_name[$i] ?></div> 作者:
                             <?= $author[$i] ?>
 
                         </li>
@@ -176,7 +176,7 @@ function block_row_small($nID, $image_dir = '...', $book_name = '', $author = ''
                     <a href="./novel/novel_handle.php?nId=<?= $nID[$i] ?>">
                         <li class="list-group-item list-group-item-success">
 
-                            <?= $book_name[$i] ?> 作者:
+                            <div class="fw-bold"><?= $book_name[$i] ?></div> 作者:
                             <?= $author[$i] ?>
 
                         </li>

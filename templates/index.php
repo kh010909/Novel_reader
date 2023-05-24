@@ -68,6 +68,7 @@ for ($i = 0; $i < $completecount; $i++) {
                 <!-- 單排格式 -->
                 <div class="flex-row pt-3 pb-1 d-none d-lg-flex">
                     <?php for ($i = 0; $i < 4; $i++) { ?>
+                        <!-- <div class="card mb-3" style="max-width: 540px;"> -->
                         <div class="p-2 flex-row d-flex col-3">
                             <div class="col-6 col me-2">
                                 <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>" title="<?= $newest_rows[$i]['nName'] ?>">
@@ -76,16 +77,16 @@ for ($i = 0; $i < $completecount; $i++) {
                             </div>
 
                             <div class="py-2">
-                                <p class="p-1 h-50 d-block d-xl-none">
+                                <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                     <?= $newest_rows[$i]['nName'] ?>
                                 </p>
-                                <p class="py-3 px-1 d-block d-xl-none">
+                                <p class="fs-6 py-3 px-1 d-block d-xl-none">
                                     <?= $newest_rows[$i]['author'] ?>
                                 </p>
-                                <p class="p-1 h-25 d-xl-block d-none">
+                                <p class="fs-6 fw-bold p-1 h-25 d-xl-block d-none">
                                     <?= $newest_rows[$i]['nName'] ?>
                                 </p>
-                                <p class="py-3 px-1 h-50 d-xl-block d-none">
+                                <p class="fs-6 py-3 px-1 h-50 d-xl-block d-none">
                                     <?= $newest_rows[$i]['author'] ?>
                                 </p>
                                 <div class="btn-group">
@@ -110,6 +111,7 @@ for ($i = 0; $i < $completecount; $i++) {
                                 </div>
                             </div>
                         </div>
+                        <!-- </div> -->
                     <?php } ?>
                 </div>
                 <!-- 單排格式 -->
@@ -122,13 +124,13 @@ for ($i = 0; $i < $completecount; $i++) {
                                 </a>
                             </div>
                             <div class="py-2 flex-column d-flex">
-                                <p class="p-1 h-50 d-block d-xl-none">
+                                <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                     <?= $newest_rows[$i]['nName'] ?>
                                 </p>
                                 <p class="py-3 px-1 d-block d-xl-none">
                                     <?= $newest_rows[$i]['author'] ?>
                                 </p>
-                                <p class="p-1 h-25 d-xl-block d-none">
+                                <p class="fs-6 fw-bold p-1 h-25 d-xl-block d-none">
                                     <?= $newest_rows[$i]['nName'] ?>
                                 </p>
                                 <p class="py-3 px-1 h-50 d-xl-block d-none">
@@ -203,13 +205,13 @@ for ($i = 0; $i < $completecount; $i++) {
                         </a>
                     </div>
                     <div class="py-2 flex-column d-flex">
-                        <p class="p-1 h-50 d-block d-xl-none">
+                        <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                             <?= $popularity_rows[$i]['nName'] ?>
                         </p>
                         <p class="py-3 px-1 d-block d-xl-none">
                             <?= $popularity_rows[$i]['author'] ?>
                         </p>
-                        <p class="p-1 h-25 d-xl-block d-none">
+                        <p class="fs-6 fw-bold p-1 h-25 d-xl-block d-none">
                             <?= $popularity_rows[$i]['nName'] ?>
                         </p>
                         <p class="py-3 px-1 h-50 d-xl-block d-none">
@@ -251,13 +253,13 @@ for ($i = 0; $i < $completecount; $i++) {
                                     </a>
                                 </div>
                                 <div class="py-2 flex-column d-flex">
-                                    <p class="p-1 h-50 d-block d-xl-none">
+                                    <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                         <?= $popularity_rows[$i]['nName'] ?>
                                     </p>
                                     <p class="py-3 px-1 d-block d-xl-none">
                                         <?= $popularity_rows[$i]['author'] ?>
                                     </p>
-                                    <p class="p-1 h-25 d-xl-block d-none">
+                                    <p class="fs-6 fw-bold p-1 h-25 d-xl-block d-none">
                                         <?= $popularity_rows[$i]['nName'] ?>
                                     </p>
                                     <p class="py-3 px-1 h-50 d-xl-block d-none">
@@ -299,13 +301,13 @@ for ($i = 0; $i < $completecount; $i++) {
                                     </a>
                                 </div>
                                 <div class="py-2 flex-column d-flex ">
-                                    <p class="p-1 h-50 d-block d-xl-none">
+                                    <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                         <?= $popularity_rows[$i]['nName'] ?>
                                     </p>
                                     <p class="py-3 px-1 d-block d-xl-none">
                                         <?= $popularity_rows[$i]['author'] ?>
                                     </p>
-                                    <p class="p-1 h-25 d-xl-block d-none">
+                                    <p class="fs-6 fw-bold p-1 h-25 d-xl-block d-none">
                                         <?= $popularity_rows[$i]['nName'] ?>
                                     </p>
                                     <p class="py-3 px-1 h-50 d-xl-block d-none">
@@ -348,7 +350,7 @@ for ($i = 0; $i < $completecount; $i++) {
                                         <img src="../static/images/novel/<?= $popularity_rows[$offset]['nImg'] ?>" style="height:300px">
                                     </a>
                                     <div class="py-2">
-                                        <p class="p-1 h-50 d-block d-xl-none">
+                                        <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                             <?= $popularity_rows[$offset]['nName'] ?>
                                         </p>
                                         <p class="py-3 px-1 d-block d-xl-none">
@@ -381,13 +383,13 @@ for ($i = 0; $i < $completecount; $i++) {
                                     </a>
                                 </div>
                                 <div class="py-2">
-                                    <p class="p-1 h-50 d-block d-xl-none">
+                                    <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                         <?= $complete_rows[$i]['nName'] ?>
                                     </p>
                                     <p class="py-3 px-1 d-block d-xl-none">
                                         <?= $complete_rows[$i]['author'] ?>
                                     </p>
-                                    <p class="p-1 h-25 d-xl-block d-none">
+                                    <p class="fs-6 fw-bold p-1 h-25 d-xl-block d-none">
                                         <?= $complete_rows[$i]['nName'] ?>
                                     </p>
                                     <p class="py-3 px-1 h-50 d-xl-block d-none">
@@ -427,13 +429,13 @@ for ($i = 0; $i < $completecount; $i++) {
                                 </div>
 
                                 <div class="py-2">
-                                    <p class="p-1 h-50 d-block d-xl-none">
+                                    <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                         <?= $complete_rows[$i]['nName'] ?>
                                     </p>
                                     <p class="py-3 px-1 d-block d-xl-none">
                                         <?= $complete_rows[$i]['author'] ?>
                                     </p>
-                                    <p class="p-1 h-25 d-xl-block d-none">
+                                    <p class="fs-6 fw-bold p-1 h-25 d-xl-block d-none">
                                         <?= $complete_rows[$i]['nName'] ?>
                                     </p>
                                     <p class="py-3 px-1 h-50 d-xl-block d-none">
@@ -476,7 +478,7 @@ for ($i = 0; $i < $completecount; $i++) {
                                             <img src="../static/images/novel/<?= $complete_rows[$offset]['nImg'] ?>" style="height:300px">
                                         </a>
                                         <div class="py-2">
-                                            <p class="p-1 h-50 d-block d-xl-none">
+                                            <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                                 <?= $complete_rows[$offset]['nName'] ?>
                                             </p>
                                             <p class="py-3 px-1 d-block d-xl-none">
@@ -498,7 +500,7 @@ for ($i = 0; $i < $completecount; $i++) {
                                         <img src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
                                     </a>
                                     <div class="py-2">
-                                        <p class="p-1 h-50 d-block d-xl-none">
+                                        <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                             <?= $complete_rows[$i]['nName'] ?>
                                         </p>
                                         <p class="py-3 px-1 d-block d-xl-none">
