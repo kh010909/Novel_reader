@@ -3,9 +3,9 @@ include("./core/config.php");
 session_start();
 $sql = "SELECT n.*,t.tag FROM novel n LEFT OUTER JOIN tag AS t ON n.nId = t.nId GROUP BY n.nId ORDER BY nTime DESC LIMIT 8";
 $newest_rows = get_row($sql, $newcount, $sql_link);
-$sql = "SELECT n.*,t.tag FROM novel n NATURAL JOIN tag AS t GROUP BY n.nId ORDER BY nLike DESC LIMIT 7";
+$sql = "SELECT n.*,t.tag FROM novel n LEFT OUTER JOIN tag AS t ON n.nId = t.nId GROUP BY n.nId ORDER BY nLike DESC LIMIT 7";
 $popularity_rows = get_row($sql, $popularcount, $sql_link);
-$sql = "SELECT n.*,t.tag FROM novel n NATURAL JOIN tag AS t  WHERE `completed` = '完結' GROUP BY n.nId LIMIT 8";
+$sql = "SELECT n.*,t.tag FROM novel n LEFT OUTER JOIN tag AS t ON n.nId = t.nId WHERE `completed` = '完結' GROUP BY n.nId LIMIT 8";
 $complete_rows = get_row($sql, $completecount, $sql_link);
 for ($i = 0; $i < $newcount; $i++) {
     $newest_rows[$i]['strip_tag'] = substr($newest_rows[$i]['tag'], 0, 6);
@@ -143,13 +143,15 @@ for ($i = 0; $i < $completecount; $i++) {
                                                 <?= $newest_rows[$i]['completed'] ?>
                                             </button>
                                         </form>
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="TAG">
-                                            <input type="hidden" name="list_q" value="<?= $newest_rows[$i]["tag"] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $newest_rows[$i]["strip_tag"] ?>
-                                            </button>
-                                        </form>
+                                        <?php if ($newest_rows[$i]["tag"] != NULL) { ?>
+                                            <form action="./novel_list.php" method="GET">
+                                                <input type="hidden" name="list_type" value="TAG">
+                                                <input type="hidden" name="list_q" value="<?= $newest_rows[$i]["tag"] ?>">
+                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                    <?= $newest_rows[$i]["strip_tag"] ?>
+                                                </button>
+                                            </form>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -222,13 +224,16 @@ for ($i = 0; $i < $completecount; $i++) {
                                         <?= $popularity_rows[$i]['completed'] ?>
                                     </button>
                                 </form>
-                                <form action="./novel_list.php" method="GET">
-                                    <input type="hidden" name="list_type" value="TAG">
-                                    <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
-                                    <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                        <?= $popularity_rows[$i]["strip_tag"] ?>
-                                    </button>
-                                </form>
+                                <?php if ($popularity_rows[$i]["tag"] != NULL) { ?>
+                                    <form action="./novel_list.php" method="GET">
+                                        <input type="hidden" name="list_type" value="TAG">
+                                        <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
+                                        <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                            <?= $popularity_rows[$i]["strip_tag"] ?>
+                                        </button>
+                                    </form>
+                                <?php } ?>
+
                             </div>
                         </div>
                     </div>
@@ -267,13 +272,15 @@ for ($i = 0; $i < $completecount; $i++) {
                                                     <?= $popularity_rows[$i]['completed'] ?>
                                                 </button>
                                             </form>
-                                            <form action="./novel_list.php" method="GET">
-                                                <input type="hidden" name="list_type" value="TAG">
-                                                <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
-                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                    <?= $popularity_rows[$i]["strip_tag"] ?>
-                                                </button>
-                                            </form>
+                                            <?php if ($popularity_rows[$i]["tag"] != NULL) { ?>
+                                                <form action="./novel_list.php" method="GET">
+                                                    <input type="hidden" name="list_type" value="TAG">
+                                                    <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
+                                                    <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                        <?= $popularity_rows[$i]["strip_tag"] ?>
+                                                    </button>
+                                                </form>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -313,13 +320,15 @@ for ($i = 0; $i < $completecount; $i++) {
                                                     <?= $popularity_rows[$i]['completed'] ?>
                                                 </button>
                                             </form>
-                                            <form action="./novel_list.php" method="GET">
-                                                <input type="hidden" name="list_type" value="TAG">
-                                                <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
-                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                    <?= $popularity_rows[$i]["strip_tag"] ?>
-                                                </button>
-                                            </form>
+                                            <?php if ($popularity_rows[$i]["tag"] != NULL) { ?>
+                                                <form action="./novel_list.php" method="GET">
+                                                    <input type="hidden" name="list_type" value="TAG">
+                                                    <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
+                                                    <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                        <?= $popularity_rows[$i]["strip_tag"] ?>
+                                                    </button>
+                                                </form>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -393,13 +402,16 @@ for ($i = 0; $i < $completecount; $i++) {
                                                     <?= $complete_rows[$i]['completed'] ?>
                                                 </button>
                                             </form>
-                                            <form action="./novel_list.php" method="GET">
-                                                <input type="hidden" name="list_type" value="TAG">
-                                                <input type="hidden" name="list_q" value="<?= $complete_rows[$i]["tag"] ?>">
-                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                    <?= $complete_rows[$i]["strip_tag"] ?>
-                                                </button>
-                                            </form>
+                                            <?php if ($complete_rows[$i]["tag"] != NULL) { ?>
+                                                <form action="./novel_list.php" method="GET">
+                                                    <input type="hidden" name="list_type" value="TAG">
+                                                    <input type="hidden" name="list_q" value="<?= $complete_rows[$i]["tag"] ?>">
+                                                    <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                        <?= $complete_rows[$i]["strip_tag"] ?>
+                                                    </button>
+                                                </form>
+                                            <?php } ?>
+
                                         </div>
                                     </div>
                                 </div>
@@ -436,13 +448,15 @@ for ($i = 0; $i < $completecount; $i++) {
                                                     <?= $complete_rows[$i]['completed'] ?>
                                                 </button>
                                             </form>
-                                            <form action="./novel_list.php" method="GET">
-                                                <input type="hidden" name="list_type" value="TAG">
-                                                <input type="hidden" name="list_q" value="<?= $complete_rows[$i]["tag"] ?>">
-                                                <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                    <?= $complete_rows[$i]["strip_tag"] ?>
-                                                </button>
-                                            </form>
+                                            <?php if ($complete_rows[$i]["tag"] != NULL) { ?>
+                                                <form action="./novel_list.php" method="GET">
+                                                    <input type="hidden" name="list_type" value="TAG">
+                                                    <input type="hidden" name="list_q" value="<?= $complete_rows[$i]["tag"] ?>">
+                                                    <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                                        <?= $complete_rows[$i]["strip_tag"] ?>
+                                                    </button>
+                                                </form>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>

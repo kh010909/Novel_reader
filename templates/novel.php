@@ -2,7 +2,7 @@
 include("./core/config.php");
 session_start();
 if (!isset($_SESSION['article'])) {
-    if(!isset($_SESSION['novel'])){?>
+    if (!isset($_SESSION['novel'])) { ?>
         <script>
             window.location.href = './index.php';
         </script>

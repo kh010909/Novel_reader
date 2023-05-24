@@ -24,7 +24,7 @@ if (isset($_GET['nId']) & isset($_GET['chapter'])) {
     }
     $sql = "SELECT * FROM `article` WHERE `nId` = $id AND `aChapter` = $chapter";
     $article_row = get_row($sql, $articlecount, $sql_link);
-    $article_row[0]['aContent'] = strip_tags($article_row[0]['aContent'], '<br>');
+    $article_row[0]['aContent']; // = strip_tags($article_row[0]['aContent'], '<br>');
     $sql = "SELECT * FROM `article` WHERE `nId` = $id";
     $article_rows = get_row($sql, $totalarticlecount, $sql_link);
     $_SESSION['article_content'] = $article_row;

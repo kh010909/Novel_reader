@@ -1,6 +1,6 @@
 # Web crawler :小說狂人(fiction maniac)
 import requests  # requests tutorial: https://steam.oxxostudio.tw/category/python/spider/requests.html
-import chardet #自動檢測網頁編碼
+import chardet #自動檢測網頁編碼:check jjwxc coding
 import pymysql  # py connect mysql: https://www.learncodewithmike.com/2020/02/python-mysql.html
 import os
 import sys
@@ -10,8 +10,8 @@ import bs4  # bs4 tutorial: https://www.learncodewithmike.com/2020/02/python-bea
 # basic crawler tutorial: https://hackmd.io/@AndyChiang/StaticCrawler
 from docx import Document
 import time
-from flask import Flask, request, send_file, redirect, url_for
-from io import BytesIO
+# from flask import Flask, request, send_file, redirect, url_for
+# from io import BytesIO
 #動態網頁爬蟲
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -471,9 +471,12 @@ def novelToDB(nName, author, description, completed, tags, nImg_link, nextLink):
 
 # Article: nId, aId, aName, aChapter, aContent, mId
 def articleToDB(aChapter, nId, aName, aContent, nextLink, addBgm):
-    
     if addBgm=="yes":
-        aContent= bgm.add_music(aContent)
+        try:
+            aContent= bgm.add_music(aContent)
+        except:
+            pass
+        # print(aContent)
     with conn.cursor() as cursor:
         sql = "INSERT INTO article(nId, aName, aChapter, aContent, mId) \
         SELECT %s, %s, %s, %s, %s \
@@ -715,7 +718,7 @@ print(result)
 # get_qidian_article("https://www.qidian.com/chapter/1034130287/751765931/")
 #測試:
 # result=crawlerToDocx("3694555", "jjwxc")
-# result=crawlerToDB("cp132ed", wb_name="czbooks", addBgm="no")
+# result=crawlerToDB("cp16ea2", wb_name="czbooks", addBgm="yes")
 # print(result)
 # pageURL = "3694555"
 

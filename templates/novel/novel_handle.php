@@ -1,7 +1,7 @@
 <?php
 include('../core/config.php');
 session_start();
-if (isset($_GET['nId']&&$_GET['nId']!='')) {
+if (isset($_GET['nId']) && $_GET['nId'] != '') {
     $id = $_GET['nId'];
     if (isset($_SESSION["user"])) {
         $user_id = $_SESSION["user"]["uId"];

@@ -5,7 +5,7 @@ import io #用于在内存中操作二进制数据
 import sys
 import pyAesCrypt #加解密
 import bs4 #轉義文件
-
+from io import BytesIO
 #本地py
 import crawler
 

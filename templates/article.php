@@ -89,7 +89,7 @@ if (!isset($_COOKIE['size'])) {
     <div class="<?= $background ?> <?= $text ?> " id="articlemain">
         <main id="fonttarget" class="container margin">
             <p id="big" class="<?= $size_big ?> py-4 <?= $font ?>"><?= $article_row[0]['aName'] ?></p>
-            <p id="small" class="<?= $size_small ?> <?= $font ?>"><?= $article_row[0]['aContent'] ?></p>
+            <div id="small" class="<?= $size_small ?> <?= $font ?>"><?= $article_row[0]['aContent'] ?></div>
             <div class="btn-group container">
                 <div class="container-fluid col-8 py-3 justify-content-center d-flex">
                     <?php
