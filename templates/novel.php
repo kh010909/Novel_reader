@@ -2,6 +2,11 @@
 include("./core/config.php");
 session_start();
 if (!isset($_SESSION['article'])) {
+    if(!isset($_SESSION['novel'])){?>
+        <script>
+            window.location.href = './index.php';
+        </script>
+    <?php }
     $id = $_SESSION['novel'][0]['nId']; ?>
     <script>
         window.location.href = './novel/novel_handle.php?nId=<?= $id ?>';
