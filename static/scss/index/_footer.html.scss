@@ -1,17 +1,22 @@
 /* footer.html */
 section#index-footer {
-    color: white;
-    background-color: #5cb85c;
+    // color: white;
+    // background-color: #5cb85c;
 
     img {
         object-fit: cover;
     }
 
     a {
-        color: white;
-
+        // color: white;
+        color:black;
+        opacity: 0.5;
+        font-weight: bold;
+        transition: color 0.3s, opacity 0.3s; /* 添加过渡效果，使颜色和透明度的变化更平滑 */
+        margin-bottom: 10px;
         &:hover {
             color: gray;
+            font-weight: bold;
         }
     }
 
@@ -25,15 +30,17 @@ section#index-footer {
             font-size: 1.5em;
             font-family: "Castoro Titling", cursive;
             padding-top: 0.5em;
+            color:black;
         }
     }
 
     h5 {
-        font-size: 1em;
+        font-size: 1.25em;
         font-family: "Castoro Titling", cursive;
         font-weight: bold;
-        border-bottom: 1px solid white;
         margin: 1em 0;
         padding: 0.5em 0;
+        
     }
+    
 }

@@ -472,11 +472,9 @@ def novelToDB(nName, author, description, completed, tags, nImg_link, nextLink):
 # Article: nId, aId, aName, aChapter, aContent, mId
 def articleToDB(aChapter, nId, aName, aContent, nextLink, addBgm):
     if addBgm=="yes":
-        try:
-            aContent= bgm.add_music(aContent)
-        except:
-            pass
+        aContent= bgm.add_music(aContent)
         # print(aContent)
+
     with conn.cursor() as cursor:
         sql = "INSERT INTO article(nId, aName, aChapter, aContent, mId) \
         SELECT %s, %s, %s, %s, %s \
@@ -694,10 +692,6 @@ def crawlerToDocx(pageURL, wb_name):
     # 儲存文檔
     document.save(file_path)
     return file_path
-    # if os.path.exists(file_path):
-    #     print("Download successful.")
-    # else:
-    #     print("Download failed.")
 
 # main funciton
 # wb_name:小說狂人(czbooks)、起點中文網(qidian)、晉江文學城(jjwxc)
@@ -718,7 +712,7 @@ print(result)
 # get_qidian_article("https://www.qidian.com/chapter/1034130287/751765931/")
 #測試:
 # result=crawlerToDocx("3694555", "jjwxc")
-# result=crawlerToDB("cp16ea2", wb_name="czbooks", addBgm="yes")
+# result=crawlerToDB("1037017211/", wb_name="qidian", addBgm="yes")
 # print(result)
 # pageURL = "3694555"
 

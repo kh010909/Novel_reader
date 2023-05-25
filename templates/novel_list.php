@@ -154,7 +154,7 @@ session_start();
         <?php
         $last_page = false;
         if ($length < 33) {
-            $last_or_no = "This is the Last page.";
+            $last_or_no = ""; //This is the Last page.
             $last_page = true;
             if (isset($_GET["list_q"])) {
                 $list_q = $_GET["list_q"];

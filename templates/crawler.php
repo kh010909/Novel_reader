@@ -46,13 +46,13 @@ session_start();
 
     <div class="col-8 container-fluid">
         <div class="row mb-5">
-            <div class="margin border-bottom h2 mb-3">
+            <div class="margin border-bottom h2 mb-3 pb-3">
                 說明
             </div>
             <p class="h6">這個頁面可以幫助你在我們支援的網站中爬蟲，並利用我們寫的程式將他存入您的電腦。</p>
         </div>
         <div class="row mb-5">
-            <div class="border-bottom h2 mb-3">
+            <div class="border-bottom h2 mb-3 pb-3">
                 如何使用
             </div>
             <ol class="h6 list-group list-group-numbered ">
@@ -83,7 +83,7 @@ session_start();
                 </li>
             </ol>
         </div>
-        <div class="border-bottom h2 mb-3">
+        <div class="border-bottom h2 mb-3 pb-3">
             下載區域
         </div>
         <div class="row mb-5">

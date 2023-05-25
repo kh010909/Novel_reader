@@ -577,10 +577,31 @@ div form input.crawler-input {
 }
 
 .skip {
-  max-height: 35px;
+  max-height: 37px;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.single-novel-block-hover {
+  transition: box-shadow 0.3s ease; /* 添加过渡效果 */
+  /* 初始状态下没有阴影 */
+  box-shadow: none;
+}
+
+.single-novel-block-hover:hover {
+  /* 鼠标悬停时添加阴影效果 */
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-color {
+  background: #f8ff00;
+  background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%);
+}
+
+.title-hover:hover {
+  color: black; /* 改变字体颜色为黑色 */
+  opacity: 0.5; /* 设置透明度为0.5 */
 }
 
 .croppie-container {
@@ -848,19 +869,20 @@ background: #ccc;
 *
 **********************************/
 /* footer.html */
-section#index-footer {
-  color: white;
-  background-color: #5cb85c;
-}
 section#index-footer img {
   -o-object-fit: cover;
      object-fit: cover;
 }
 section#index-footer a {
-  color: white;
+  color: black;
+  opacity: 0.5;
+  font-weight: bold;
+  transition: color 0.3s, opacity 0.3s; /* 添加过渡效果，使颜色和透明度的变化更平滑 */
+  margin-bottom: 10px;
 }
 section#index-footer a:hover {
   color: gray;
+  font-weight: bold;
 }
 section#index-footer p.copy-right {
   font-size: 0.5em;
@@ -870,12 +892,12 @@ section#index-footer a h2 {
   font-size: 1.5em;
   font-family: "Castoro Titling", cursive;
   padding-top: 0.5em;
+  color: black;
 }
 section#index-footer h5 {
-  font-size: 1em;
+  font-size: 1.25em;
   font-family: "Castoro Titling", cursive;
   font-weight: bold;
-  border-bottom: 1px solid white;
   margin: 1em 0;
   padding: 0.5em 0;
 }
@@ -891,6 +913,13 @@ nav#index-navbar a.navbar-brand {
 nav#index-navbar a.nav-link {
   font-size: 1.25em;
   font-family: "Castoro Titling", cursive;
+  color: black;
+  opacity: 0.5;
+  font-weight: bold;
+}
+nav#index-navbar a.nav-link:hover {
+  color: gray;
+  font-weight: bold;
 }
 nav#index-navbar form {
   vertical-align: baseline;

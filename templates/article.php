@@ -95,7 +95,7 @@ if (!isset($_COOKIE['size'])) {
                     <?php
                     $prevchapter = $chapter - 1;
                     $nextchapter = $chapter + 1;
-                    if ($chapter != 0) { ?>
+                    if ($chapter != 1) { ?>
                         <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $prevchapter  ?>" class="btn btn-secondary m-1 rounded-pill">
                             <?php $chapter ?>
                             <i class="bi bi-arrow-left"></i>

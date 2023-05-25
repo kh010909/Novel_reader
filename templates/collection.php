@@ -58,33 +58,45 @@ if (isset($_SESSION["user"])) {
     <main class="container">
         <?php
         if ($collection_file_count == 0) { ?>
-            <div class="margin h3 pb-5 pt-2">There's no content...</div>
+            <div style="height: 25px;">
+                <div aria-label="Example 20px high" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="margin h3 pt-2 fs-1 pb-3 border-bottom">歡迎來到Language Forest，請增加你的收藏夾...</div>
+            <a class="ms-3 mb-1 h1 pb-5 pt-2 mt-5" href="./index.php">
+                <i class="bi bi-folder-plus title-hover" style="font-size: 100px;"></i>
+            </a>
         <?php } ?>
         <?php
         for ($i = 0; $i < $collection_file_count; $i++) {
             $k = 0; ?>
-            <div class="row justify-content-md-center d-none d-lg-block margin">
+            <div class="row justify-content-md-center d-none d-lg-block margin rounded-2 shadow-lg pb-3">
                 <div class="row">
-                    <div class="d-flex justify-content-start border-bottom pb-2 mb-1">
-                        <a class="h1" href="./novel_list.php?list_type=COLLECTION&list_q=<?= $collection_file_rows[$i]['collectName'] ?>" title="To <?= $collection_file_rows[$i]['collectName'] ?>"><?= $collection_file_rows[$i]['collectName'] ?></a>
+                    <div class="d-flex justify-content-start border-bottom pb-2 m-2 pt-2 me-3">
+                        <a class="h1 title-hover" href="./novel_list.php?list_type=COLLECTION&list_q=<?= $collection_file_rows[$i]['collectName'] ?>"><?= $collection_file_rows[$i]['collectName'] ?></a>
                         <form action="./collection/collection_delete_handle.php" method="post" class="p-2">
                             <input type="hidden" name="collectId" value="<?= $collection_file_rows[$i]['collectId'] ?>">
-                            <button type="submit" class="dropdown-item pt-3"> <i class="bi bi-trash"></i> </button>
+                            <button type="submit" class="dropdown-item pt-3 title-hover"> <i class="bi bi-trash"></i> </button>
                         </form>
                     </div>
-                    <div class="d-flex flex-row pt-3 mb-3">
+                    <div class="d-flex flex-row pt-3 mb-3 pb-3">
                         <?php
                         for ($j = 0; $j < $novel_count; $j++) {
                             if ($novel_rows[$j]['collectId'] == $collection_file_rows[$i]['collectId']) { ?>
-                                <a class="p-2 flex-row d-flex col-3" href="./novel/novel_handle.php?nId=<?= $novel_rows[$j]['nId'] ?>">
+                                <a class="rounded-2 single-novel-block-hover p-2 flex-row d-flex col-3" href="./novel/novel_handle.php?nId=<?= $novel_rows[$j]['nId'] ?>">
                                     <div class="col-6 me-2">
-                                        <img src="../static/images/novel/<?= $novel_rows[$j]['nImg'] ?>">
+                                        <img class="rounded-2" src="../static/images/novel/<?= $novel_rows[$j]['nImg'] ?>">
                                     </div>
                                     <div class="py-2">
-                                        <p class="fs-6 fw-bold p-1 h-25">
+                                        <p class="skip fw-bold p-1 h-50 d-block d-xl-none">
                                             <?= $novel_rows[$j]['nName'] ?>
                                         </p>
-                                        <p class="py-3 px-1 h-50">
+                                        <p class="h8 py-3 px-1 d-block d-xl-none">
+                                            <?= $novel_rows[$j]['author'] ?>
+                                        </p>
+                                        <p class="skip fw-bold p-1 h-25 d-xl-block d-none">
+                                            <?= $novel_rows[$j]['nName'] ?>
+                                        </p>
+                                        <p class="h8 py-3 px-1 h-50 d-xl-block d-none">
                                             <?= $novel_rows[$j]['author'] ?>
                                         </p>
                                         <div class="btn-group h-50">
@@ -99,7 +111,7 @@ if (isset($_SESSION["user"])) {
                                                 <input type="hidden" name="nId" value="<?= $novel_rows[$j]['nId'] ?>">
                                                 <input type="hidden" name="collectId" value="<?= $collection_file_rows[$i]['collectId'] ?>">
                                                 <input type="hidden" name="inside" value="1">
-                                                <button type="submit" class="dropdown-item"> <i class="bi bi-trash"></i> </button>
+                                                <button type="submit" class="dropdown-item"> <i class="bi bi-trash title-hover"></i> </button>
                                             </form>
                                         </div>
 
@@ -113,14 +125,19 @@ if (isset($_SESSION["user"])) {
                             }
                         }
                         if ($k == 0) { ?>
-                            <div class="mb-5 h3">There's no novel in the collection...</div>
+                            <a class="ms-3 mb-1 h1" href="./index.php">
+                                <i class="bi bi-folder-plus title-hover" style="font-size: 100px;"></i>
+                            </a>
+                            <!-- <div class="mb-5 h3">There's no novel in the collection...</div> -->
                         <?php }
                         ?>
                     </div>
                 </div>
             </div><?php
                 } ?>
-
+        <div style="height: 50px;">
+            <div aria-label="Example 20px high" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
     </main>
 
     <footer>

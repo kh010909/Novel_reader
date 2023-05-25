@@ -16,9 +16,9 @@ include './profile/profile_form.php';
 // }
 
 ?>
-<nav id="index-navbar" class="navbar navbar-expand-md navbar-dark bg-success fixed-top">
+<nav id="index-navbar" class="shadow navbar navbar-expand-md navbar-dark fixed-top main-color"> <!-- bg-success-->
     <div id="navbar-content" class="container-fluid">
-        <a class="navbar-brand end-0" href="index.php">
+        <a class="navbar-brand end-0 ms-2 text-black-50 fw-bold" href="index.php">
             Language<br>Forest
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false">
@@ -26,7 +26,7 @@ include './profile/profile_form.php';
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item font-weight-bold">
+                <li class="nav-item">
                     <a class="nav-link" href="./crawler.php">Crawl</a>
                 </li>
                 <?php
@@ -35,16 +35,16 @@ include './profile/profile_form.php';
                     <li class="nav-item font-weight-bold">
                         <a class="nav-link" aria-current="page" href="./collection.php">Collection</a>
                     </li>
-                    <li class="nav-item font-weight-bold">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#modal-profile">Profile</a>
                     </li>
                 <?php } else {
                 ?>
-                    <li class="nav-item font-weight-bold">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#modal-login">Collection</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" data-bs-toggle="modal" data-bs-target="#modal-login">Profile</a>
+                        <a class="nav-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#modal-login">Profile</a>
                     </li>
                 <?php }
                 ?>

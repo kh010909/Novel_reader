@@ -63,12 +63,12 @@ for ($i = 0; $i < $completecount; $i++) {
         <div class="row justify-content-md-center margin">
             <div class="shadow-lg row pb-5 pt-3 rounded">
                 <div class="border-bottom pb-3 mb-1" id="block1">
-                    <a class="h1" href="./novel_list.php?list_type=TIME" title="搜尋 最新小說 ">最新小說</a>
+                    <a class="h1 title-hover" href="./novel_list.php?list_type=TIME">最新小說</a>
                 </div>
                 <!-- 單排格式 -->
                 <div class="flex-row pt-3 pb-1 d-none d-lg-flex">
                     <?php for ($i = 0; $i < 4; $i++) { ?>
-                        <a class="p-2 flex-row d-flex col-3" href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>" title="<?= $newest_rows[$i]['nName'] ?>">
+                        <a class="single-novel-block-hover p-2 flex-row d-flex col-3 rounded-2" href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>">
                             <div class="col-6 col me-2">
                                 <img class="rounded-2" src="../static/images/novel/<?= $newest_rows[$i]['nImg'] ?>">
 
@@ -113,7 +113,7 @@ for ($i = 0; $i < $completecount; $i++) {
                 <!-- 單排格式 -->
                 <div class="flex-row pt-3 pb-1 d-none d-lg-flex">
                     <?php for ($i = 4; $i < 8; $i++) { ?>
-                        <a class="p-2 flex-row d-flex col-3" href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>" title="<?= $newest_rows[$i]['nName'] ?>">
+                        <a class="single-novel-block-hover p-2 flex-row d-flex col-3 rounded-2" href="./novel/novel_handle.php?nId=<?= $newest_rows[$i]['nId'] ?>">
                             <div class="col-6 me-2">
                                 <img class="rounded-2" src="../static/images/novel/<?= $newest_rows[$i]['nImg'] ?>">
                             </div>
@@ -164,7 +164,7 @@ for ($i = 0; $i < $completecount; $i++) {
                             $offset = $i * 2 + $j; ?>
                             <div class="p-2 flex-row d-flex col-6">
                                 <div class="me-2">
-                                    <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$offset]['nId'] ?>" title="<?= $newest_rows[$i]['nName'] ?>">
+                                    <a href="./novel/novel_handle.php?nId=<?= $newest_rows[$offset]['nId'] ?>">
                                         <img class="rounded-2" src="../static/images/novel/<?= $newest_rows[$offset]['nImg'] ?>" style="height:300px">
                                     </a>
                                     <div class="py-2">
@@ -188,49 +188,46 @@ for ($i = 0; $i < $completecount; $i++) {
         <div class="row justify-content-md-center d-block margin">
             <div class="shadow-lg row pb-5 pt-3 rounded">
                 <div class="border-bottom pb-3 mb-1" id="block2">
-                    <a class="h1" href="./novel_list.php?list_type=LIKE" title="搜尋 最新小說">熱門小說</a>
+                    <a class="h1 title-hover" href="./novel_list.php?list_type=LIKE">熱門小說</a>
                 </div>
                 <!-- 單位格式 (大)-->
                 <?php $i = 0; ?>
-                <a class="ps-5 py-3 pl-3 pr-0 col-3 pt-4 pb-1 d-none d-lg-block" href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?>" title="<?= $popularity_rows[$i]['nName'] ?>">
-
+                <a class="single-novel-block-hover ps-5 py-3 pl-3 pr-0 col-3 pt-4 pb-1 d-none d-lg-block rounded-2" href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?>">
                     <div>
-                        <div>
-                            <img class="rounded-2" src="../static/images/novel/<?= $popularity_rows[$i]['nImg'] ?>">
-                        </div>
-                        <div class="py-2 flex-column d-flex">
-                            <p class="skip fs-6 fw-bold p-1 h-50 d-block d-xl-none">
-                                <?= $popularity_rows[$i]['nName'] ?>
-                            </p>
-                            <p class="py-3 px-1 d-block d-xl-none">
-                                <?= $popularity_rows[$i]['author'] ?>
-                            </p>
-                            <p class="skip fs-6 fw-bold p-1 h-25 d-xl-block d-none">
-                                <?= $popularity_rows[$i]['nName'] ?>
-                            </p>
-                            <p class="py-3 px-1 h-50 d-xl-block d-none">
-                                <?= $popularity_rows[$i]['author'] ?>
-                            </p>
-                            <div class="btn-group">
-                                <div class="d-xl-flex d-none">
+                        <img class="rounded-2" src="../static/images/novel/<?= $popularity_rows[$i]['nImg'] ?>">
+                    </div>
+                    <div class="py-2 flex-column d-flex">
+                        <p class="skip fs-3 fw-bold p-1 h-50 d-block d-xl-none">
+                            <?= $popularity_rows[$i]['nName'] ?>
+                        </p>
+                        <p class="py-3 px-1 d-block d-xl-none">
+                            <?= $popularity_rows[$i]['author'] ?>
+                        </p>
+                        <p class="skip fs-3 fw-bold p-1 h-25 d-xl-block d-none">
+                            <?= $popularity_rows[$i]['nName'] ?>
+                        </p>
+                        <p class="py-3 px-1 h-50 d-xl-block d-none">
+                            <?= $popularity_rows[$i]['author'] ?>
+                        </p>
+                        <div class="btn-group">
+                            <div class="d-xl-flex d-none">
+                                <form action="./novel_list.php" method="GET">
+                                    <input type="hidden" name="list_type" value="COMPLETED">
+                                    <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]['completed'] ?>">
+                                    <button type="submit" class="me-1 btn btn-outline-primary rounded-pill">
+                                        <?= $popularity_rows[$i]['completed'] ?>
+                                    </button>
+                                </form>
+                                <?php if ($popularity_rows[$i]["tag"] != NULL) { ?>
                                     <form action="./novel_list.php" method="GET">
-                                        <input type="hidden" name="list_type" value="COMPLETED">
-                                        <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]['completed'] ?>">
-                                        <button type="submit" class="me-1 btn btn-outline-primary rounded-pill">
-                                            <?= $popularity_rows[$i]['completed'] ?>
+                                        <input type="hidden" name="list_type" value="TAG">
+                                        <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
+                                        <button type="submit" class="btn btn-outline-primary rounded-pill">
+                                            <?= $popularity_rows[$i]["strip_tag"] ?>
                                         </button>
                                     </form>
-                                    <?php if ($popularity_rows[$i]["tag"] != NULL) { ?>
-                                        <form action="./novel_list.php" method="GET">
-                                            <input type="hidden" name="list_type" value="TAG">
-                                            <input type="hidden" name="list_q" value="<?= $popularity_rows[$i]["tag"] ?>">
-                                            <button type="submit" class="btn btn-outline-primary rounded-pill">
-                                                <?= $popularity_rows[$i]["strip_tag"] ?>
-                                            </button>
-                                        </form>
-                                    <?php } ?>
+                                <?php } ?>
 
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -241,7 +238,7 @@ for ($i = 0; $i < $completecount; $i++) {
                     <div class="d-none d-lg-flex flex-row pt-3 pb-1">
                         <!-- 單位格式 (塊狀2 小)-->
                         <?php for ($i = 1; $i < 4; $i++) { ?>
-                            <a class="p-2 flex-row d-flex col-4" href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?> " title="<?= $popularity_rows[$i]['nName'] ?>">
+                            <a class="single-novel-block-hover p-2 flex-row d-flex col-4 rounded-2" href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?> ">
 
                                 <!-- 單位格式 (塊狀2 小)-->
                                 <div class="col-6 me-2">
@@ -289,7 +286,7 @@ for ($i = 0; $i < $completecount; $i++) {
                     <div class="d-none d-lg-flex flex-row pt-3 pb-1">
                         <!-- 單位格式 (塊狀2 小)-->
                         <?php for ($i = 4; $i < 7; $i++) { ?>
-                            <a class="p-2 flex-row d-flex col-4" href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?> " title="<?= $popularity_rows[$i]['nName'] ?>">
+                            <a class="single-novel-block-hover p-2 flex-row d-flex col-4 rounded-2" href="./novel/novel_handle.php?nId=<?= $popularity_rows[$i]['nId'] ?> ">
                                 <!-- 單位格式 (塊狀2 小)-->
                                 <div class="col-6 me-2">
                                     <img class="rounded-2" src="../static/images/novel/<?= $popularity_rows[$i]['nImg'] ?>">
@@ -339,21 +336,20 @@ for ($i = 0; $i < $completecount; $i++) {
                         <?php
                         for ($j = 0; $j < 2; $j++) {
                             $offset = $i * 2 + $j; ?>
-                            <div class="p-2 flex-row d-flex col-6">
-                                <div class="me-2">
-                                    <a href="./novel/novel_handle.php?nId=<?= $popularity_rows[$offset]['nId'] ?>" title="<?= $popularity_rows[$i]['nName'] ?>">
-                                        <img class="rounded-2" src="../static/images/novel/<?= $popularity_rows[$offset]['nImg'] ?>" style="height:300px">
-                                    </a>
-                                    <div class="py-2">
-                                        <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
-                                            <?= $popularity_rows[$offset]['nName'] ?>
-                                        </p>
-                                        <p class="py-3 px-1 d-block d-xl-none">
-                                            <?= $popularity_rows[$offset]['author'] ?>
-                                        </p>
-                                    </div>
+                            <a class="me-2 single-novel-block-hover p-2 flex-row d-flex col-6 rounded-2" href="./novel/novel_handle.php?nId=<?= $popularity_rows[$offset]['nId'] ?>">
+                                <!-- <div class=""> -->
+                                <img class="rounded-2" src="../static/images/novel/<?= $popularity_rows[$offset]['nImg'] ?>" style="height:300px">
+                                <div class="py-2">
+                                    <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
+                                        <?= $popularity_rows[$offset]['nName'] ?>
+                                    </p>
+                                    <p class="py-3 px-1 d-block d-xl-none">
+                                        <?= $popularity_rows[$offset]['author'] ?>
+                                    </p>
                                 </div>
-                            </div>
+                                <!-- </div> -->
+                            </a>
+
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -364,14 +360,14 @@ for ($i = 0; $i < $completecount; $i++) {
         <div class="row justify-content-md-center d-block margin mb-5">
             <div class="shadow-lg row pb-5 pt-3 rounded">
                 <div class="border-bottom pb-3 mb-1" id="block3">
-                    <a class="h1" href="./novel_list.php?list_type=COMPLETED&list_q=完結" title="搜尋 完結小說">完結小說</a>
+                    <a class="h1 title-hover" href="./novel_list.php?list_type=COMPLETED&list_q=完結">完結小說</a>
                 </div>
                 <!-- 單排格式 -->
                 <div class="flex-row pt-3 pb-1 d-none d-lg-flex">
                     <?php
                     if ($completecount < 4) {
                         for ($i = 0; $i < $completecount; $i++) { ?>
-                            <a class="p-2 flex-row d-flex col-6 col-lg-3" href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>" title="<?= $complete_rows[$i]['nName'] ?>">
+                            <a class="single-novel-block-hover p-2 flex-row d-flex col-6 col-lg-3 rounded-2" href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>">
                                 <div class="col-6 col me-2">
                                     <img class="rounded-2" src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
                                 </div>
@@ -415,7 +411,7 @@ for ($i = 0; $i < $completecount; $i++) {
                         <?php }
                     } else {
                         for ($i = 0; $i < 4; $i++) { ?>
-                            <a class="p-2 flex-row d-flex col-6 col-lg-3 pt-3 pb-1" href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>" title="<?= $complete_rows[$i]['nName'] ?>">
+                            <a class="single-novel-block-hover p-2 flex-row d-flex col-6 col-lg-3 rounded-2" href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>">
                                 <div class="col-6 col me-2">
                                     <img class="rounded-2" src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
                                 </div>
@@ -465,11 +461,9 @@ for ($i = 0; $i < $completecount; $i++) {
                             <?php
                             for ($j = 0; $j < 2; $j++) {
                                 $offset = $i * 2 + $j; ?>
-                                <div class="p-2 flex-row d-flex col-6">
+                                <a class="single-novel-block-hover p-2 flex-row d-flex col-6 rounded-2" href="./novel/novel_handle.php?nId=<?= $complete_rows[$offset]['nId'] ?>">
                                     <div class="me-2">
-                                        <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$offset]['nId'] ?>" title="<?= $complete_rows[$offset]['nName'] ?>">
-                                            <img class="rounded-2" src="../static/images/novel/<?= $complete_rows[$offset]['nImg'] ?>" style="height:300px">
-                                        </a>
+                                        <img class="rounded-2" src="../static/images/novel/<?= $complete_rows[$offset]['nImg'] ?>" style="height:300px">
                                         <div class="py-2">
                                             <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                                 <?= $complete_rows[$offset]['nName'] ?>
@@ -479,7 +473,8 @@ for ($i = 0; $i < $completecount; $i++) {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
+
                             <?php } ?>
                         </div>
                     <?php }
@@ -487,11 +482,9 @@ for ($i = 0; $i < $completecount; $i++) {
                     <div class="flex-row pt-3 pb-1 d-flex d-lg-none">
                         <?php
                         for ($i = 0; $i < 2; $i++) { ?>
-                            <div class="p-2 flex-row d-flex col-6">
+                            <a class="single-novel-block-hover p-2 flex-row d-flex col-6 rounded-2" href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>">
                                 <div class="me-2">
-                                    <a href="./novel/novel_handle.php?nId=<?= $complete_rows[$i]['nId'] ?>" title="<?= $complete_rows[$i]['nName'] ?>">
-                                        <img class="rounded-2" src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
-                                    </a>
+                                    <img class="rounded-2" src="../static/images/novel/<?= $complete_rows[$i]['nImg'] ?>">
                                     <div class="py-2">
                                         <p class="fs-6 fw-bold p-1 h-50 d-block d-xl-none">
                                             <?= $complete_rows[$i]['nName'] ?>
@@ -501,7 +494,7 @@ for ($i = 0; $i < $completecount; $i++) {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         <?php } ?>
                     </div>
                 <?php } ?>

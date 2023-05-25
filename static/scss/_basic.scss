@@ -83,9 +83,33 @@ div {
     font-family: "Noto Sans TC", sans-serif;
 }
 
-.skip {
-    max-height: 35px;
+.skip { //超過兩行的文字overflow:hidden
+    max-height: 37px;
     display: -webkit-box; 
     overflow: hidden; 
     text-overflow: ellipsis;
 }
+
+.single-novel-block-hover{ //block shadow
+    transition: box-shadow 0.3s ease; /* 添加过渡效果 */
+
+    /* 初始状态下没有阴影 */
+    box-shadow: none;
+}
+
+.single-novel-block-hover:hover{
+    /* 鼠标悬停时添加阴影效果 */
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2);
+}
+.main-color{
+    background: #f8ff00;
+    background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%);
+}
+.title-hover:hover{ //顏色變淺
+    color: black; /* 改变字体颜色为黑色 */
+    opacity: 0.5; /* 设置透明度为0.5 */
+}
+
+
+
+

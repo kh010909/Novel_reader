@@ -72,15 +72,22 @@ function get_row($sql, &$length, $sql_link)
 function block_unit1($nID, $image_dir = '...', $book_name = '', $author = '', $description = '')
 {
 ?>
-    <a href="./novel/novel_handle.php?nId=<?= $nID ?>" class="p-2 flex-row d-flex col-3">
-        <div class=" col-6">
-            <img src="<?= $image_dir ?>">
+    <a href="./novel/novel_handle.php?nId=<?= $nID ?>" class="rounded-2 single-novel-block-hover mb-2 p-2 flex-row d-flex col-3">
+        <div class="col-6 me-2">
+            <img class="rounded-2" src="<?= $image_dir ?>">
         </div>
         <div class="py-2 flex-column d-flex">
-            <p class="p-1 fw-bold">
+
+            <p class="skip fw-bold p-1 h-50 d-block d-xl-none">
                 <?= $book_name ?>
             </p>
-            <p class="py-3 px-1">
+            <p class="h8 py-3 px-1 d-block d-xl-none">
+                <?= $author ?>
+            </p>
+            <p class="skip fw-bold p-1 h-25 d-xl-block d-none">
+                <?= $book_name ?>
+            </p>
+            <p class="h8 py-3 px-1 h-50 d-xl-block d-none">
                 <?= $author ?>
             </p>
             <p class="p-1 skip">

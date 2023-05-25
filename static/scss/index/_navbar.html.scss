@@ -14,6 +14,13 @@ nav#index-navbar {
     a.nav-link {
         font-size: 1.25em;
         font-family: 'Castoro Titling', cursive;
+        color: black;
+        opacity: 0.5;
+        font-weight: bold;
+        &:hover{
+            color: gray;
+            font-weight: bold;
+        }
     }
 
     form {
