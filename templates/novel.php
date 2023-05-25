@@ -26,8 +26,8 @@ $collectioncount = $_SESSION['collectioncount'];
 $collection_novel_rows = $_SESSION['collection_novel'];
 $collectionNovelCount = $_SESSION['collection_novel_count'];
 //reset article background and text color
-unset($_SESSION['background']);
-setcookie('background', null, -1);
+// unset($_SESSION['background']);
+// setcookie('background', null, -1);
 ?>
 
 <!DOCTYPE html>
@@ -59,10 +59,7 @@ setcookie('background', null, -1);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <!-- Custom script -->
-    <!-- <script src="../scripts/index_nav.html.js"></script> -->
     <script src="../scripts/password_validation.js"></script>
-    <script src="../scripts/croppie.js"></script>
-    <script src="../scripts/index_post_ajax.js"></script>
     <link href="../static/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 

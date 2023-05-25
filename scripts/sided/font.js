@@ -56,40 +56,46 @@ function light() {
 }
 
 function cwTeXKai() {
-    var element = document.getElementById("fonttarget").querySelectorAll("p");
-    var i = 0;
-    for (i = 0; i < 2; i++) {
-        element[i].classList.remove("cwTeXKai");
-        element[i].classList.remove("cwTeXYen");
-        element[i].classList.remove("Noto-Sans-TC");
-        element[i].classList.add("cwTeXKai");
-        document.cookie = "font=cwTeXKai";
-    }
+    var element1 = document.getElementById("big");
+    var element2 = document.getElementById("small");
+    element1.classList.remove("cwTeXKai");
+    element1.classList.remove("cwTeXYen");
+    element1.classList.remove("Noto-Sans-TC");
+    element1.classList.add("cwTeXKai");
+    element2.classList.remove("cwTeXKai");
+    element2.classList.remove("cwTeXYen");
+    element2.classList.remove("Noto-Sans-TC");
+    element2.classList.add("cwTeXKai");
+    document.cookie = "font=cwTeXKai";
 
 }
 
 function cwTeXYen() {
-    var element = document.getElementById("fonttarget").querySelectorAll("p");
-    var i = 0;
-    for (i = 0; i < 2; i++) {
-        element[i].classList.remove("cwTeXKai");
-        element[i].classList.remove("cwTeXYen");
-        element[i].classList.remove("Noto-Sans-TC");
-        element[i].classList.add("cwTeXYen");
-        document.cookie = "font=cwTeXYen";
-    }
+    var element1 = document.getElementById("big");
+    var element2 = document.getElementById("small");
+    element1.classList.remove("cwTeXKai");
+    element1.classList.remove("cwTeXYen");
+    element1.classList.remove("Noto-Sans-TC");
+    element1.classList.add("cwTeXYen");
+    element2.classList.remove("cwTeXKai");
+    element2.classList.remove("cwTeXYen");
+    element2.classList.remove("Noto-Sans-TC");
+    element2.classList.add("cwTeXYen");
+    document.cookie = "font=cwTeXYen";
 }
 
 function Noto_Sans_TC() {
-    var element = document.getElementById("fonttarget").querySelectorAll("p");
-    var i = 0;
-    for (i = 0; i < 2; i++) {
-        element[i].classList.remove("cwTeXKai");
-        element[i].classList.remove("cwTeXYen");
-        element[i].classList.remove("Noto-Sans-TC");
-        element[i].classList.add("Noto-Sans-TC");
-        document.cookie = "font=Noto-Sans-TC";
-    }
+    var element1 = document.getElementById("big");
+    var element2 = document.getElementById("small");
+    element1.classList.remove("cwTeXKai");
+    element1.classList.remove("cwTeXYen");
+    element1.classList.remove("Noto-Sans-TC");
+    element1.classList.add("Noto_Sans_TC");
+    element2.classList.remove("cwTeXKai");
+    element2.classList.remove("cwTeXYen");
+    element2.classList.remove("Noto-Sans-TC");
+    element2.classList.add("Noto_Sans_TC");
+    document.cookie = "font=Noto_Sans_TC";
 }
 
 function font_Big() {

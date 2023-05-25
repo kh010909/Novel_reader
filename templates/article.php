@@ -2,6 +2,11 @@
 include("./core/config.php");
 session_start();
 if (!isset($_SESSION['article_content'])) {
+    if (!isset($_SESSION['chapter'])) { ?>
+        <script>
+            window.location.href = './index.php';
+        </script>
+    <?php }
     $chapter = $_SESSION['chapter'];
     $id = $_SESSION['id']; ?>
     <script>
@@ -73,11 +78,8 @@ if (!isset($_COOKIE['size'])) {
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
 
     <!-- Custom script -->
-    <!-- <script src="../scripts/index_nav.html.js"></script> -->
     <script src="../scripts/password_validation.js"></script>
-    <script src="../scripts/croppie.js"></script>
-    <script src="../scripts/index_post_ajax.js"></script>
-    <script src="../scripts/sided/sided.js"></script>
+    <script src="../scripts/sided/font.js"></script>
     <link href="../static/css/main.css" rel="stylesheet" type="text/css" />
 
 </head>
@@ -90,18 +92,21 @@ if (!isset($_COOKIE['size'])) {
         <main id="fonttarget" class="container margin">
             <p id="big" class="<?= $size_big ?> py-4 <?= $font ?>"><?= $article_row[0]['aName'] ?></p>
             <div id="small" class="<?= $size_small ?> <?= $font ?>"><?= $article_row[0]['aContent'] ?></div>
+            <div style="height: 150px;">
+                <div aria-label="Example 20px high" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
             <div class="btn-group container">
                 <div class="container-fluid col-8 py-3 justify-content-center d-flex">
                     <?php
                     $prevchapter = $chapter - 1;
                     $nextchapter = $chapter + 1;
-                    if ($chapter != 1) { ?>
+                    if ($chapter > 1) { ?>
                         <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $prevchapter  ?>" class="btn btn-secondary m-1 rounded-pill">
                             <?php $chapter ?>
                             <i class="bi bi-arrow-left"></i>
                         </a>
                     <?php }
-                    if ($chapter != $totalarticlecount - 1) { ?>
+                    if ($chapter < $totalarticlecount) { ?>
                         <a href="./article/article_handle.php?nId=<?= $id ?>&chapter=<?= $nextchapter ?>" class="btn btn-primary m-1 rounded-pill">
                             <i class="bi bi-arrow-right"></i>
                         </a>
@@ -110,8 +115,8 @@ if (!isset($_COOKIE['size'])) {
             </div>
         </main>
     </div>
-    <?php include("./sided_drop_down.php"); ?>
 
+    <?php include("./sided_drop_down.php"); ?>
 </body>
 
 </html>

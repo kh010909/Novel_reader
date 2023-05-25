@@ -33,8 +33,6 @@ session_start();
 
     <!-- Custom script -->
     <script src="../scripts/password_validation.js"></script>
-    <script src="../scripts/croppie.js"></script>
-    <script src="../scripts/index_post_ajax.js"></script>
     <link href="../static/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 

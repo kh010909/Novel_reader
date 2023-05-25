@@ -31,18 +31,7 @@ $comment_rows = get_row($sql, $commentcount, $sql_link);
                         </div>
                 <?php }
                 } ?>
-                <!-- 單位格式 -->
-                <!-- <div class="p-2 flex-row d-flex col">
-                    <div class=" col-6">
-                        <img src="./Testing.png">
-                    </div>
-                    <div class="py-2 flex-column d-flex">
-                        <p class="p-1">作品的名稱...</p>
-                        <p class="py-3 px-1">作者的名稱...</p>
-                        <p class="p-1">這理是介紹這理是介紹這理是介紹這理是介紹限二十五字...
-                        </p>
-                    </div>
-                </div> -->
+
             </ul>
         </div>
     </div>

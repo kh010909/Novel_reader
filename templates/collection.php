@@ -42,10 +42,7 @@ if (isset($_SESSION["user"])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <!-- Custom script -->
-    <!-- <script src="../scripts/index_nav.html.js"></script> -->
     <script src="../scripts/password_validation.js"></script>
-    <script src="../scripts/croppie.js"></script>
-    <script src="../scripts/index_post_ajax.js"></script>
     <link href="../static/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -125,6 +122,10 @@ if (isset($_SESSION["user"])) {
                             }
                         }
                         if ($k == 0) { ?>
+
+                            <!-- <button type="submit" class="" data-bs-toggle="modal" data-bs-target="#collectionModal2">
+                                <i class="bi bi-folder-plus title-hover" style="font-size: 100px;"></i>
+                            </button> -->
                             <a class="ms-3 mb-1 h1" href="./index.php">
                                 <i class="bi bi-folder-plus title-hover" style="font-size: 100px;"></i>
                             </a>
@@ -141,17 +142,18 @@ if (isset($_SESSION["user"])) {
     </main>
 
     <footer>
-        <?php include('./core/footer.php') ?>
+        <?php include('./core/footer.php'); ?>
+
     </footer>
 </body>
 
 </html>
-<!-- <?php
-        // unset($_SESSION["collection_file"]);
-        // unset($_SESSION["collection_file_count"]);
-        // unset($_SESSION["collection_novel"]);
-        // unset($_SESSION["collection_novel_count"]);
-        ?> -->
+<?php include("./novel/modal.php");
+// unset($_SESSION["collection_file"]);
+// unset($_SESSION["collection_file_count"]);
+// unset($_SESSION["collection_novel"]);
+// unset($_SESSION["collection_novel_count"]);
+?>
 <script>
     $(document).ready(function() {
         $('#modal-show-message').modal('show');
