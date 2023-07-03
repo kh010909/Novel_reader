@@ -9,6 +9,8 @@ function connect($root, $pass)
     try {
         $conn = new PDO('mysql:host=localhost; dbname=novel_reader', $root, $pass);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //PDO::ATTR_ERRMODE 是一个属性常量，表示错误报告模式
+        //    ，PDO::ERRMODE_EXCEPTION 是另一个常量，表示以异常的形式报告错误
         return $conn;
     } catch (Exception $e) {
         print("Error connecting to database: " . $e->getMessage());
@@ -34,6 +36,8 @@ function get_row($sql, &$length, $sql_link)
     $temp = $sql_link->query($sql);
     $length = $temp->rowCount();
     $tempout = $temp->fetchall(PDO::FETCH_ASSOC);
+    //PDO::FETCH_ASSOC 参数，表示以关联数组的形式获取行数据
+    //  也可以使用 PDO::FETCH_NUM 参数来获取索引数组
     return $tempout;
 }
 
